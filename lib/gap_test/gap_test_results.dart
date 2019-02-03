@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
+import '../utils/utility.dart';
 import './gap_test_result_card.dart';
 import '../widgets/custom_appbar.dart';
 
 class GapTestResults extends StatelessWidget {
-  String numbersStr;
-  String symbolNumStr;
+  final String numbersStr;
+  final String symbolNumStr;
 
   int symbolNum = 10;
-  List<double> randomNumbers = List();
   var gapMap = Map();
+  List<double> randomNumbers = List();
 
   GapTestResults(this.numbersStr, this.symbolNumStr) {
     symbolNum = int.tryParse(symbolNumStr) ?? 10;
 
-    convertListToNumbers();
+    randomNumbers = Utility.converStrToList(numbersStr);
     calculateGaps();
-  }
-
-  // Convert string of random numbers to list
-  void convertListToNumbers() {
-    List<String> numbersStrList = numbersStr.split(" ");
-
-    for (int i = 0; i < numbersStrList.length; ++i) {
-      double value = double.tryParse(numbersStrList[i]) ?? -1.0;
-      randomNumbers.add(value);
-    }
   }
 
   // Calculate gaps between numbers
