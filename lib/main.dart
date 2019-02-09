@@ -12,24 +12,23 @@ class Main extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "ProductSans",
         brightness: Brightness.light,
-        primarySwatch: Colors.deepPurple,
         primaryColor: Colors.deepPurple,
-        accentColor: Colors.purple,
+        accentColor: Colors.teal,
         primaryIconTheme: IconThemeData(
           color: Colors.black,
         ),
         textTheme: TextTheme(
           title: TextStyle(
             color: Colors.black,
-            fontSize: 20.0,
+            fontSize: 22.0,
           ),
           headline: TextStyle(
             color: Colors.black,
-            fontSize: 18.0,
+            fontSize: 20.0,
           ),
           subhead: TextStyle(
             color: Colors.black,
-            fontSize: 14.0,
+            fontSize: 16.0,
           ),
         ),
       ),

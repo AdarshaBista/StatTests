@@ -4,7 +4,7 @@ class CustomAppBar extends AppBar {
   CustomAppBar({BuildContext context, String title})
       : super(
           backgroundColor: Colors.white,
-          elevation: 0.0,
+          elevation: 6.0,
           title: Text(
             title,
             style: Theme.of(context).textTheme.title,

@@ -10,18 +10,18 @@ class CustomFormField extends TextFormField {
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(12.0),
               borderSide: BorderSide(
-                color: Colors.black,
-                width: 1.0,
+                color: Theme.of(context).primaryColor,
+                width: 1.5,
               ),
             ),
             hintText: hintText,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(12.0),
               borderSide: BorderSide(
-                color: Colors.black,
-                width: 2.0,
+                color: Colors.grey,
+                width: 1.0,
               ),
             ),
           ),

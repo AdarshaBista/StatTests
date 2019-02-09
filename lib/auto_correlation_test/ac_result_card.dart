@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AutoCorrelationTestResultCard extends StatelessWidget {
+class ACResultCard extends StatelessWidget {
   final String title;
 
-  AutoCorrelationTestResultCard({
+  ACResultCard({
     this.title,
   });
 
@@ -15,7 +15,7 @@ class AutoCorrelationTestResultCard extends StatelessWidget {
         vertical: 4.0,
       ),
       child: Card(
-        color: Theme.of(context).primaryColor,
+        color: Colors.white,
         elevation: 4.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
@@ -24,10 +24,7 @@ class AutoCorrelationTestResultCard extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22.0,
-            ),
+            style: Theme.of(context).textTheme.title,
           ),
         ),
       ),

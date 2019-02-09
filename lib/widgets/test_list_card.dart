@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TestCard extends StatelessWidget {
+class TestListCard extends StatelessWidget {
   final String title;
   final String bgPath;
   final Function onPressed;
 
-  TestCard({
+  TestListCard({
     this.title,
     this.bgPath,
     this.onPressed,

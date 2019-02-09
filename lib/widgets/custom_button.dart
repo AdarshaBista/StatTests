@@ -10,11 +10,11 @@ class CustomButton extends RaisedButton {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18.0,
+              fontSize: 20.0,
             ),
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(30.0),
           ),
           onPressed: onPressed,
         );

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_appbar.dart';
-import './auto_correlation_test_results.dart';
-import './auto_correlation_test_result_card.dart';
+import './ac_calculator.dart';
+import './ac_result_card.dart';
 
-class AutoCorrelationTestResultsScreen extends StatelessWidget {
+class ACResultsScreen extends StatelessWidget {
+  final ACCalculator calculator;
   int capitalM;
   double sigmaRhoIm;
   double sum;
   double rhoIm;
   double zCalc;
 
-  AutoCorrelationTestResultsScreen() {
-    capitalM = AutoCorrelationTestResults.capitalM;
-    sigmaRhoIm = AutoCorrelationTestResults.sigmaRhoIm;
-    sum = AutoCorrelationTestResults.summation;
-    rhoIm = AutoCorrelationTestResults.rhoIm;
-    zCalc = AutoCorrelationTestResults.calculateZcalc();
+  ACResultsScreen({this.calculator}) {
+    capitalM = calculator.calculateCapitalM();
+    sigmaRhoIm = calculator.calculateSigmaRhoIm(capitalM);
+    rhoIm = calculator.calculateRhoIm(capitalM);
+    zCalc = calculator.calculateZcalc(rhoIm, sigmaRhoIm);
   }
 
   @override
@@ -30,19 +30,19 @@ class AutoCorrelationTestResultsScreen extends StatelessWidget {
         itemExtent: 90.0,
         shrinkWrap: true,
         children: <Widget>[
-          AutoCorrelationTestResultCard(
+          ACResultCard(
             title: "M = $capitalM",
           ),
-          AutoCorrelationTestResultCard(
+          ACResultCard(
             title: "Sum = $sum",
           ),
-          AutoCorrelationTestResultCard(
+          ACResultCard(
             title: "Rho = $rhoIm",
           ),
-          AutoCorrelationTestResultCard(
+          ACResultCard(
             title: "Sigma Rho = $sigmaRhoIm",
           ),
-          AutoCorrelationTestResultCard(
+          ACResultCard(
             title: "Zo = $zCalc",
           ),
         ],

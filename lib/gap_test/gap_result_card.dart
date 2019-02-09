@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class GapTestResultsCard extends StatelessWidget {
+class GapResultCard extends StatelessWidget {
   final String title;
   final String list;
   final String listSize;
 
-  GapTestResultsCard({
+  GapResultCard({
     this.title,
     this.list,
     this.listSize,
