@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/gap_test/gap_calculator.dart';
-import '../utils/utility.dart';
-import './gap_result_card.dart';
-import '../widgets/custom_appbar.dart';
+import 'package:stat_tests/gap_test/gap_result_card.dart';
 
 class GapResultsScreen extends StatelessWidget {
   final GapCalculator calculator;

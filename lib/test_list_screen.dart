@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import './widgets/custom_appbar.dart';
-import './gap_test/gap_input_screen.dart';
-import './auto_correlation_test/ac_input_screen.dart';
+import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/chi_square_test/cs_input_screen.dart';
+import 'package:stat_tests/ks_test/ks_input_screen.dart';
+import 'package:stat_tests/gap_test/gap_input_screen.dart';
+import 'package:stat_tests/auto_correlation_test/ac_input_screen.dart';
+import 'package:stat_tests/poker_test/poker_input_screen.dart';
 
 class TestListScreen extends StatefulWidget {
   @override
@@ -40,14 +43,23 @@ class TestListScreenState extends State<TestListScreen>
       bottomNavigationBar: Material(
         color: Theme.of(context).primaryColor,
         child: TabBar(
-          indicatorSize: TabBarIndicatorSize.tab,
+          indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
           tabs: <Widget>[
+            Tab(
+              text: "CST",
+            ),
+            Tab(
+              text: "KST",
+            ),
             Tab(
               text: "GT",
             ),
             Tab(
               text: "ACT",
+            ),
+            Tab(
+              text: "PT",
             ),
           ],
         ),
@@ -55,8 +67,11 @@ class TestListScreenState extends State<TestListScreen>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
+          CSInputScreen(),
+          KSInputScreen(),
           GapInputScreen(),
           ACInputScreen(),
+          PokerInputScreen(),
         ],
       ),
     );

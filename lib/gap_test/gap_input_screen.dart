@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/gap_test/gap_calculator.dart';
 import 'package:stat_tests/utils/utility.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/custom_form_field.dart';
-import '../widgets/custom_button.dart';
-import './gap_results_screen.dart';
+import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/widgets/custom_form_field.dart';
+import 'package:stat_tests/widgets/custom_button.dart';
+import 'package:stat_tests/gap_test/gap_calculator.dart';
+import 'package:stat_tests/gap_test/gap_results_screen.dart';
 
 class GapInputScreen extends StatefulWidget {
   @override

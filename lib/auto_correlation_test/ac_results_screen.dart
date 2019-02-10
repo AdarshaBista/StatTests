@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import '../widgets/custom_appbar.dart';
-import './ac_calculator.dart';
-import './ac_result_card.dart';
+import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
+import 'package:stat_tests/auto_correlation_test/ac_result_card.dart';
 
 class ACResultsScreen extends StatelessWidget {
   final ACCalculator calculator;
   int capitalM;
   double sigmaRhoIm;
-  double sum;
   double rhoIm;
   double zCalc;
 
@@ -32,9 +31,6 @@ class ACResultsScreen extends StatelessWidget {
         children: <Widget>[
           ACResultCard(
             title: "M = $capitalM",
-          ),
-          ACResultCard(
-            title: "Sum = $sum",
           ),
           ACResultCard(
             title: "Rho = $rhoIm",
