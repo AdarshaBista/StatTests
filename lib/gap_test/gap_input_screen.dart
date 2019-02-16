@@ -46,13 +46,11 @@ class GapInputScreenState extends State<GapInputScreen> {
     List<double> _numbers = Utility.converStrToList(_numbersStr);
 
     // Create a auto correlation test calculator based on the
-    GapCalculator _calculator = GapCalculator(
+    return GapCalculator(
       numbers: _numbers,
       divFactor: _divFactor,
       symbolNum: _symbolNum,
     );
-
-    return _calculator;
   }
 
   void onCalculateButtonPressed() {

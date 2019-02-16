@@ -6,7 +6,7 @@ class CustomFormField extends TextFormField {
       : super(
           controller: controller,
           keyboardType: TextInputType.number,
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.subhead,
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(

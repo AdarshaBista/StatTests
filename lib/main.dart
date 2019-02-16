@@ -28,7 +28,7 @@ class Main extends StatelessWidget {
           ),
           subhead: TextStyle(
             color: Colors.black,
-            fontSize: 16.0,
+            fontSize: 18.0,
           ),
         ),
       ),

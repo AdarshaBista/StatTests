@@ -51,13 +51,11 @@ class ACInputScreenState extends State<ACInputScreen> {
     List<double> _numbers = Utility.converStrToList(_numbersStr, _divFactor);
 
     // Create a auto correlation test calculator
-    ACCalculator _calculator = ACCalculator(
+    return ACCalculator(
         numbers: _numbers,
         divFactor: _divFactor,
         ithNumber: _ithNumber,
         lag: _lag);
-
-    return _calculator;
   }
 
   void _onCalculateButtonPressed() {

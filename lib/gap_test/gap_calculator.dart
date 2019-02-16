@@ -5,8 +5,8 @@ class GapCalculator {
 
   GapCalculator({this.numbers, this.divFactor, this.symbolNum});
 
-  Map<int, List<double>> calculateGaps() {
-    var gapMap = Map();
+  Map calculateGaps() {
+    Map gapMap = Map();
     List<int> ithGap = List();
 
     // Calculate gaps between numbers

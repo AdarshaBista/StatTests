@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
 import 'package:stat_tests/auto_correlation_test/ac_result_card.dart';
@@ -12,9 +13,11 @@ class ACResultsScreen extends StatelessWidget {
 
   ACResultsScreen({this.calculator}) {
     capitalM = calculator.calculateCapitalM();
-    sigmaRhoIm = calculator.calculateSigmaRhoIm(capitalM);
-    rhoIm = calculator.calculateRhoIm(capitalM);
-    zCalc = calculator.calculateZcalc(rhoIm, sigmaRhoIm);
+    sigmaRhoIm =
+        Utility.setPrecisionTo4(calculator.calculateSigmaRhoIm(capitalM));
+    rhoIm = Utility.setPrecisionTo4(calculator.calculateRhoIm(capitalM));
+    zCalc =
+        Utility.setPrecisionTo4(calculator.calculateZcalc(rhoIm, sigmaRhoIm));
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:stat_tests/gap_test/gap_result_card.dart';
 
 class GapResultsScreen extends StatelessWidget {
   final GapCalculator calculator;
-  Map<int, List<double>> gapMap;
+  Map gapMap = Map();
 
   GapResultsScreen({this.calculator}) {
     gapMap = calculator.calculateGaps();
@@ -18,17 +18,21 @@ class GapResultsScreen extends StatelessWidget {
         context: context,
         title: "Results",
       ),
-      body: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount: gapMap.length,
-        itemBuilder: (BuildContext context, int index) {
-          int key = gapMap.keys.elementAt(index);
-          return GapResultCard(
-            title: key.toString(),
-            list: gapMap[key].toString(),
-            listSize: gapMap[key].length.toString(),
-          );
-        },
+      body: Container(
+        height: MediaQuery.of(context).size.height / 4,
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: gapMap.length,
+          itemBuilder: (BuildContext context, int index) {
+            int key = gapMap.keys.elementAt(index);
+            return GapResultCard(
+              title: key.toString(),
+              list: gapMap[key].toString(),
+              listSize: gapMap[key].length.toString(),
+            );
+          },
+        ),
       ),
     );
   }
