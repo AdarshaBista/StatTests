@@ -10,7 +10,7 @@ class KSResultsScreen extends StatelessWidget {
   KSResultsScreen({this.calculator});
 
   Widget _buildTable() => SizedBox(
-        height: (calculator.numbers.length + 2).toDouble() * 32,
+        height: (calculator.numbers.length + 2).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
           physics: ClampingScrollPhysics(),

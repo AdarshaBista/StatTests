@@ -1,8 +1,8 @@
 import 'package:stat_tests/utils/utility.dart';
 
 class CSCalculator {
-  final double divFactor;
   List<double> numbers;
+  final double divFactor;
   final double intervalWidth;
 
   double smallestNumber;
@@ -12,21 +12,24 @@ class CSCalculator {
   List<double> ithCalcValues = [];
 
   CSCalculator({this.numbers, this.divFactor, this.intervalWidth}) {
-    // TO BE REMOVED
-    numbers = Utility.converStrToList(Utility.n, divFactor);
-
     largestNumber = Utility.findLargest(numbers);
     smallestNumber = Utility.findSmallest(numbers);
+    
     observed = Utility.createIntervals(
         smallestNumber, largestNumber, intervalWidth, divFactor);
-    observed.forEach((interval) {
-      interval.count = populateInterval(interval);
-    });
+    _populateIntervals();
+    
     int intervalNum = observed.length == 0 ? 1 : observed.length;
     expected = Utility.setPrecisionTo4(numbers.length / intervalNum);
   }
 
-  int populateInterval(Interval interval) {
+  void _populateIntervals() {
+    observed.forEach((interval) {
+      interval.count = _getCount(interval);
+    });
+  }
+
+  int _getCount(Interval interval) {
     int count = 0;
     numbers.forEach((number) {
       if (interval.start <= number && interval.end >= number) count++;
@@ -46,8 +49,4 @@ class CSCalculator {
 
     return chiSquareCalc;
   }
-
-  List<Interval> getIntervals() => observed;
-  List<double> getIthCalcValues() => ithCalcValues;
-  double getExpected() => expected;
 }

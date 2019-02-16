@@ -10,12 +10,43 @@ class CSResultsScreen extends StatelessWidget {
 
   CSResultsScreen({this.calculator});
 
-  double _getTableHeight(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double listHeight = calculator.getIntervals().length.toDouble() * 30.0;
+  Widget _buildTable() => SizedBox(
+        height: (calculator.observed.length + 2).toDouble() * 30.0,
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          physics: ClampingScrollPhysics(),
+          children: <Widget>[
+            CSResultColumn(
+              columnId: 1,
+              title: "Intervals",
+              values: calculator.observed,
+            ),
+            CSResultColumn(
+              columnId: 2,
+              title: "Observed",
+              values: calculator.observed,
+            ),
+            CSResultColumn(
+              columnId: 3,
+              title: "Calculated",
+              values: calculator.ithCalcValues,
+            ),
+          ],
+        ),
+      );
 
-    return screenHeight > listHeight ? screenHeight : listHeight;
-  }
+  Widget _buildResultsCards() => Column(
+        children: <Widget>[
+          CSResultCard(
+            title: "Expected = ${calculator.expected}",
+          ),
+          CSResultCard(
+            title:
+                "Chi Square = ${Utility.setPrecisionTo4(calculator.calculateChiSquare())}",
+          ),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -24,48 +55,11 @@ class CSResultsScreen extends StatelessWidget {
         context: context,
         title: "Results",
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Column(
-              children: <Widget>[
-                CSResultCard(
-                  title:
-                      "Chi Square = ${Utility.setPrecisionTo4(calculator.calculateChiSquare())}",
-                ),
-                CSResultCard(
-                  title: "Expected = ${calculator.getExpected()}",
-                ),
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              height: _getTableHeight(context),
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                physics: ClampingScrollPhysics(),
-                children: <Widget>[
-                  CSResultColumn(
-                    columnId: 1,
-                    title: "Intervals",
-                    values: calculator.getIntervals(),
-                  ),
-                  CSResultColumn(
-                    columnId: 2,
-                    title: "Observed",
-                    values: calculator.getIntervals(),
-                  ),
-                  CSResultColumn(
-                    columnId: 3,
-                    title: "Calculated",
-                    values: calculator.getIthCalcValues(),
-                  ),
-                ],
-              ),
-            ),
-          ),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: <Widget>[
+          _buildTable(),
+          _buildResultsCards(),
         ],
       ),
     );
