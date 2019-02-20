@@ -6,7 +6,7 @@ class PokerCalculator {
     List<double> expectedFreqs = [];
     for (int i = 0; i < digits; ++i) {
       double expectedFreq = total * probabilities[i];
-      expectedFreqs.add(expectedFreq);
+      expectedFreqs.add(Utility.setPrecisionTo4(expectedFreq));
     }
     return expectedFreqs;
   }
@@ -17,8 +17,8 @@ class PokerCalculator {
     for (int i = 0; i < digits; ++i) {
       double diff = observedFreqs[i] - expectedFreqs[i];
       double diffSquared = diff * diff;
-      double ithValue = Utility.setPrecisionTo4(diffSquared / expectedFreqs[i]);
-      ithCalcValues.add(ithValue);
+      double ithValue = diffSquared / expectedFreqs[i];
+      ithCalcValues.add(Utility.setPrecisionTo4(ithValue));
     }
     return ithCalcValues;
   }
