@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomFormField extends TextFormField {
   CustomFormField(
-      {BuildContext context, TextEditingController controller, String hintText})
+      {BuildContext context,
+      TextEditingController controller,
+      String hintText,})
       : super(
           controller: controller,
           keyboardType: TextInputType.number,

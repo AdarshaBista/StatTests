@@ -4,7 +4,7 @@ import 'package:stat_tests/chi_square_test/cs_input_screen.dart';
 import 'package:stat_tests/ks_test/ks_input_screen.dart';
 import 'package:stat_tests/gap_test/gap_input_screen.dart';
 import 'package:stat_tests/auto_correlation_test/ac_input_screen.dart';
-import 'package:stat_tests/poker_test/poker_input_screen.dart';
+import 'package:stat_tests/poker_test/poker_digit_input_screen.dart';
 
 class TestListScreen extends StatefulWidget {
   @override
@@ -71,7 +71,7 @@ class TestListScreenState extends State<TestListScreen>
           KSInputScreen(),
           GapInputScreen(),
           ACInputScreen(),
-          PokerInputScreen(),
+          PokerDigitInputScreen(),
         ],
       ),
     );
