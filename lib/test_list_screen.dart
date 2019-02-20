@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/chi_square_test/cs_input_screen.dart';
 import 'package:stat_tests/ks_test/ks_input_screen.dart';
 import 'package:stat_tests/gap_test/gap_input_screen.dart';
@@ -36,10 +35,6 @@ class TestListScreenState extends State<TestListScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        context: context,
-        title: "Choose a Test",
-      ),
       bottomNavigationBar: Material(
         color: Theme.of(context).primaryColor,
         child: TabBar(
