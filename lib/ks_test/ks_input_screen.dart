@@ -92,7 +92,7 @@ class KSInputScreenState extends State<KSInputScreen> {
       resizeToAvoidBottomPadding: false,
       appBar: CustomAppBar(
         context: context,
-        title: "KS Test",
+        title: "Kolmogorov Smirnov Test",
       ),
       body: ListView(
         physics: BouncingScrollPhysics(),

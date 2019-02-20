@@ -42,8 +42,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
   Poker4DigitCalculator _getCalculator() {
     // Capture the string in text fields
     String _allSameStr = _allSameFieldController.text.toString();
-    String _allDiffStr = _allSameFieldController.text.toString();
-    String _onePairStr = _allSameFieldController.text.toString();
+    String _allDiffStr = _allDiffFieldController.text.toString();
+    String _onePairStr = _onePairFieldController.text.toString();
     String _twoPairStr = _twoPairFieldController.text.toString();
     String _threeSameStr = _threeSameFieldController.text.toString();
 

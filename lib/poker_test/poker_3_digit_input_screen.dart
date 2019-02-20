@@ -36,8 +36,8 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
   Poker3DigitCalculator _getCalculator() {
     // Capture the string in text fields
     String _allSameStr = _allSameFieldController.text.toString();
-    String _allDiffStr = _allSameFieldController.text.toString();
-    String _onePairStr = _allSameFieldController.text.toString();
+    String _allDiffStr = _allDiffFieldController.text.toString();
+    String _onePairStr = _onePairFieldController.text.toString();
 
     // Convert the string to required types
     int _allSame = int.tryParse(_allSameStr) ?? 1;
