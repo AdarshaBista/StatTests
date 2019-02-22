@@ -1,21 +1,23 @@
 class GapCalculator {
-  final int symbolNum;
   final double divFactor;
   final List<double> numbers;
+  Set<double> symbols;
 
-  GapCalculator({this.numbers, this.divFactor, this.symbolNum});
+  GapCalculator({this.numbers, this.divFactor}) {
+    symbols = Set.from(numbers);
+  }
 
   Map calculateGaps() {
     Map gapMap = Map();
     List<int> ithGap = List();
 
     // Calculate gaps between numbers
-    for (int i = 0; i <= symbolNum; ++i) {
+    symbols.forEach((symbol) {
       int prevIndex = 0;
-      for (int j = 0; j < numbers.length; ++j) {
-        if (i == numbers[j]) {
-          ithGap.add(j - prevIndex - 1);
-          prevIndex = j;
+      for (int i = 0; i < numbers.length; ++i) {
+        if (symbol == numbers[i]) {
+          ithGap.add(i - prevIndex - 1);
+          prevIndex = i;
         }
       }
 
@@ -23,9 +25,9 @@ class GapCalculator {
       if (ithGap.isNotEmpty) ithGap.removeAt(0);
 
       // Add list to map and clear list
-      gapMap[i] = List.from(ithGap);
+      gapMap[symbol] = List.from(ithGap);
       ithGap.clear();
-    }
+    });
     return gapMap;
   }
 }

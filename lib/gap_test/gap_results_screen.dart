@@ -25,7 +25,7 @@ class GapResultsScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: gapMap.length,
           itemBuilder: (BuildContext context, int index) {
-            int key = gapMap.keys.elementAt(index);
+            double key = gapMap.keys.elementAt(index);
             return GapResultCard(
               title: key.toString(),
               list: gapMap[key].toString(),

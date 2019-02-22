@@ -49,7 +49,6 @@ class GapInputScreenState extends State<GapInputScreen> {
     return GapCalculator(
       numbers: _numbers,
       divFactor: _divFactor,
-      symbolNum: _symbolNum,
     );
   }
 
@@ -83,15 +82,6 @@ class GapInputScreenState extends State<GapInputScreen> {
         ),
       );
 
-  Widget _buildSymbolNumInputField() => Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: CustomFormField(
-          context: context,
-          controller: _symbolsNumFieldController,
-          hintText: "Enter largest number",
-        ),
-      );
-
   Widget _buildCalculateButton() => Padding(
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
@@ -118,7 +108,6 @@ class GapInputScreenState extends State<GapInputScreen> {
         children: <Widget>[
           _buildNumbersInputField(),
           _buildDivFactorInputField(),
-          _buildSymbolNumInputField(),
           _buildCalculateButton(),
         ],
       ),
