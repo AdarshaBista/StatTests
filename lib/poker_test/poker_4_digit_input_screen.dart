@@ -48,11 +48,11 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
     String _threeSameStr = _threeSameFieldController.text.toString();
 
     // Convert the string to required types
-    int _allSame = int.tryParse(_allSameStr) ?? 1;
-    int _allDiff = int.tryParse(_allDiffStr) ?? 1;
-    int _onePair = int.tryParse(_onePairStr) ?? 1;
-    int _twoPair = int.tryParse(_twoPairStr) ?? 1;
-    int _threeSame = int.tryParse(_threeSameStr) ?? 1;
+    int _allSame = int.tryParse(_allSameStr) ?? 0;
+    int _allDiff = int.tryParse(_allDiffStr) ?? 0;
+    int _onePair = int.tryParse(_onePairStr) ?? 0;
+    int _twoPair = int.tryParse(_twoPairStr) ?? 0;
+    int _threeSame = int.tryParse(_threeSameStr) ?? 0;
 
     // Create a poker test calculator
     return Poker4DigitCalculator(
@@ -133,7 +133,6 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: CustomAppBar(
         context: context,
         title: "Poker Test",
