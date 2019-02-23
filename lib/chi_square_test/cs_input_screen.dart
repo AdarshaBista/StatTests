@@ -71,6 +71,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           context: context,
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
+          maxLines: 3,
         ),
       );
 

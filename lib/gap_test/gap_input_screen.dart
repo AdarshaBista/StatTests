@@ -68,6 +68,7 @@ class GapInputScreenState extends State<GapInputScreen> {
           context: context,
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
+          maxLines: 3,
         ),
       );
 

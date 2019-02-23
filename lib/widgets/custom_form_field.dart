@@ -4,11 +4,13 @@ class CustomFormField extends TextFormField {
   CustomFormField(
       {BuildContext context,
       TextEditingController controller,
-      String hintText,})
+      String hintText,
+      int maxLines: 1})
       : super(
           controller: controller,
           keyboardType: TextInputType.number,
           style: Theme.of(context).textTheme.subhead,
+          maxLines: maxLines,
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(
