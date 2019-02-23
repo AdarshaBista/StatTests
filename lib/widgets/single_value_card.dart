@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CSResultCard extends StatelessWidget {
-  final String title;
+class SingleValueCard extends StatelessWidget {
+  final String value;
 
-  CSResultCard({
-    this.title,
+  SingleValueCard({
+    this.value,
   });
 
   @override
@@ -16,18 +16,15 @@ class CSResultCard extends StatelessWidget {
       ),
       child: Card(
         color: Colors.white,
-        elevation: 4.0,
+        elevation: 6.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         clipBehavior: Clip.antiAlias,
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.title,
-            ),
+          child: Text(
+            value,
+            style: Theme.of(context).textTheme.title,
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
-import 'package:stat_tests/chi_square_test/cs_result_card.dart';
+import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/poker_test/poker_calculator.dart';
 import 'package:stat_tests/poker_test/poker_result_column.dart';
 
@@ -40,8 +40,8 @@ class PokerResultsScreen extends StatelessWidget {
 
   Widget _buildResultsCards() => Column(
         children: <Widget>[
-          CSResultCard(
-            title: "Chi Square = ${calculator.chiSquareCalc}",
+          SingleValueCard(
+            value: "Chi Square = ${calculator.chiSquareCalc}",
           ),
         ],
       );

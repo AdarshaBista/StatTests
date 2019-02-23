@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
-import 'package:stat_tests/auto_correlation_test/ac_result_card.dart';
 
 class ACResultsScreen extends StatelessWidget {
   final ACCalculator calculator;
@@ -32,17 +32,17 @@ class ACResultsScreen extends StatelessWidget {
         itemExtent: 90.0,
         shrinkWrap: true,
         children: <Widget>[
-          ACResultCard(
-            title: "M = $capitalM",
+          SingleValueCard(
+            value: "M = $capitalM",
           ),
-          ACResultCard(
-            title: "Rho = $rhoIm",
+          SingleValueCard(
+            value: "Rho = $rhoIm",
           ),
-          ACResultCard(
-            title: "Sigma Rho = $sigmaRhoIm",
+          SingleValueCard(
+            value: "Sigma Rho = $sigmaRhoIm",
           ),
-          ACResultCard(
-            title: "Zo = $zCalc",
+          SingleValueCard(
+            value: "Zo = $zCalc",
           ),
         ],
       ),

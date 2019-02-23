@@ -9,15 +9,14 @@ class Interval {
 }
 
 class Utility {
-  static String n =
-      "2 3 6 0 1 9 7 4 9 5 7 1 0 9 3 8 5 6 7 2 8 3 7 4 9 2 3 0 4 2 0 6 7";
-
   // Converts string to list of doubles
   static List<double> converStrToList(String numbersStr,
       [double divFactor = 1.0]) {
+    // Remove whitespaces
     numbersStr = numbersStr.trim();
     List<String> numbersStrList = numbersStr.split(RegExp('\\s+'));
 
+    // Convert List of String to List of double
     List<double> numbers = [];
     numbersStrList.forEach((numberStr) {
       double number = (double.tryParse(numberStr) ?? -1.0) / divFactor;
@@ -30,7 +29,7 @@ class Utility {
   // Create intervals with given width
   static List<Interval> createIntervals(
       double from, double to, double width, double divFactor) {
-    List<Interval> intervals = List();
+    List<Interval> intervals = List<Interval>();
     double offset = 1.0 / (divFactor * 10.0);
 
     // Add the first interval

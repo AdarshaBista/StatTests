@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/ks_test/ks_calculator.dart';
 import 'package:stat_tests/ks_test/ks_result_column.dart';
-import 'package:stat_tests/chi_square_test/cs_result_card.dart';
 
 class KSResultsScreen extends StatelessWidget {
   final KSCalculator calculator;
@@ -38,14 +38,14 @@ class KSResultsScreen extends StatelessWidget {
 
   Widget _buildResultsCards() => Column(
         children: <Widget>[
-          CSResultCard(
-            title: "D+ = ${calculator.dPlus}",
+          SingleValueCard(
+            value: "D+ = ${calculator.dPlus}",
           ),
-          CSResultCard(
-            title: "D- = ${calculator.dMinus}",
+          SingleValueCard(
+            value: "D- = ${calculator.dMinus}",
           ),
-          CSResultCard(
-            title: "D = ${calculator.d}",
+          SingleValueCard(
+            value: "D = ${calculator.d}",
           ),
         ],
       );

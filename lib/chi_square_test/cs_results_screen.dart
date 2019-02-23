@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/chi_square_test/cs_calculator.dart';
 import 'package:stat_tests/chi_square_test/cs_result_column.dart';
-import 'package:stat_tests/chi_square_test/cs_result_card.dart';
 
 class CSResultsScreen extends StatelessWidget {
   final CSCalculator calculator;
@@ -38,11 +38,11 @@ class CSResultsScreen extends StatelessWidget {
 
   Widget _buildResultsCards() => Column(
         children: <Widget>[
-          CSResultCard(
-            title: "Expected = ${calculator.expected}",
+          SingleValueCard(
+            value: "Expected = ${calculator.expected}",
           ),
-          CSResultCard(
-            title:
+          SingleValueCard(
+            value:
                 "Chi Square = ${Utility.setPrecisionTo4(calculator.calculateChiSquare())}",
           ),
         ],
