@@ -5,7 +5,7 @@ class CustomButton extends RaisedButton {
       : super(
           padding: const EdgeInsets.all(12.0),
           color: Theme.of(context).primaryColor,
-          elevation: 8.0,
+          elevation: 6.0,
           child: Text(
             text,
             style: TextStyle(
@@ -14,7 +14,7 @@ class CustomButton extends RaisedButton {
             ),
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(24.0),
           ),
           onPressed: onPressed,
         );
