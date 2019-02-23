@@ -38,11 +38,9 @@ class GapInputScreenState extends State<GapInputScreen> {
     // Capture the string in text fields
     String _numbersStr = _numbersFieldController.text.toString();
     String _divFactorStr = _divFactorFieldController.text.toString();
-    String _symbolNumStr = _symbolsNumFieldController.text.toString();
 
     // Convert the string to required types
     double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    int _symbolNum = int.tryParse(_symbolNumStr) ?? 10;
     List<double> _numbers = Utility.converStrToList(_numbersStr);
 
     // Create a auto correlation test calculator based on the

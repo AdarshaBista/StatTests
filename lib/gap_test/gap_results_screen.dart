@@ -5,11 +5,8 @@ import 'package:stat_tests/gap_test/gap_result_card.dart';
 
 class GapResultsScreen extends StatelessWidget {
   final GapCalculator calculator;
-  Map gapMap = Map();
 
-  GapResultsScreen({this.calculator}) {
-    gapMap = calculator.calculateGaps();
-  }
+  GapResultsScreen({this.calculator});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +20,13 @@ class GapResultsScreen extends StatelessWidget {
         child: ListView.builder(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: gapMap.length,
+          itemCount: calculator.gapMap.length,
           itemBuilder: (BuildContext context, int index) {
-            double key = gapMap.keys.elementAt(index);
+            double key = calculator.gapMap.keys.elementAt(index);
             return GapResultCard(
               title: key.toString(),
-              list: gapMap[key].toString(),
-              listSize: gapMap[key].length.toString(),
+              list: calculator.gapMap[key].toString(),
+              listSize: calculator.gapMap[key].length.toString(),
             );
           },
         ),
