@@ -1,11 +1,10 @@
 import 'dart:math';
 
-class Interval {
+class StatInterval {
   final double start;
   final double end;
-  int count;
 
-  Interval(this.start, this.end);
+  StatInterval(this.start, this.end);
 }
 
 class Utility {
@@ -19,7 +18,7 @@ class Utility {
     // Convert List of String to List of double
     List<double> numbers = [];
     numbersStrList.forEach((numberStr) {
-      double number = (double.tryParse(numberStr) ?? -1.0) / divFactor;
+      double number = (double.tryParse(numberStr) ?? 0.0) / divFactor;
       numbers.add(number);
     });
 
@@ -27,19 +26,19 @@ class Utility {
   }
 
   // Create intervals with given width
-  static List<Interval> createIntervals(
+  static List<StatInterval> createIntervals(
       double from, double to, double width, double divFactor) {
-    List<Interval> intervals = List<Interval>();
+    List<StatInterval> intervals = List<StatInterval>();
     double offset = 1.0 / (divFactor * 10.0);
 
     // Add the first interval
-    intervals.add(Interval(
+    intervals.add(StatInterval(
         setPrecisionTo2(from), setPrecisionTo2(from + width - offset)));
 
     // Add the rest
     for (int i = 1; intervals[i - 1].end < to; i++) {
       double prevIntervalEnd = intervals[i - 1].end;
-      intervals.add(Interval(setPrecisionTo2(prevIntervalEnd + offset),
+      intervals.add(StatInterval(setPrecisionTo2(prevIntervalEnd + offset),
           setPrecisionTo2(prevIntervalEnd + width)));
     }
 

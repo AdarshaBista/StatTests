@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/ks_test/ks_calculator.dart';
-import 'package:stat_tests/ks_test/ks_result_column.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 
 class KSResultsScreen extends StatelessWidget {
   final KSCalculator calculator;
@@ -16,19 +16,19 @@ class KSResultsScreen extends StatelessWidget {
           physics: ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            KSResultColumn(
+            TableColumn(
               header: "R(i)",
               values: calculator.numbers,
             ),
-            KSResultColumn(
+            TableColumn(
               header: "i / N",
               values: calculator.iOverN,
             ),
-            KSResultColumn(
+            TableColumn(
               header: "i / N - R(i)",
               values: calculator.iOverNMinusRi,
             ),
-            KSResultColumn(
+            TableColumn(
               header: "R(i) - (i-1) / N",
               values: calculator.riMinusIMinusOneOverN,
             ),

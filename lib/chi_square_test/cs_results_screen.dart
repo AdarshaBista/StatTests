@@ -3,33 +3,40 @@ import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/chi_square_test/cs_calculator.dart';
-import 'package:stat_tests/chi_square_test/cs_result_column.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 
 class CSResultsScreen extends StatelessWidget {
   final CSCalculator calculator;
 
   CSResultsScreen({this.calculator});
 
+  List<String> _getIntervalList() {
+    List<StatInterval> intervals = calculator.intervals;
+    List<String> observedStrList = List.generate(
+        intervals.length,
+        (int index) => (intervals[index].start.toString() +
+            " - " +
+            intervals[index].end.toString()));
+    return observedStrList;
+  }
+
   Widget _buildTable() => SizedBox(
-        height: (calculator.observed.length + 2).toDouble() * 30.0,
+        height: (calculator.intervals.length + 2).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           physics: ClampingScrollPhysics(),
           children: <Widget>[
-            CSResultColumn(
-              columnId: 1,
-              title: "Intervals",
+            TableColumn(
+              header: "Intervals",
+              values: _getIntervalList(),
+            ),
+            TableColumn(
+              header: "Observed",
               values: calculator.observed,
             ),
-            CSResultColumn(
-              columnId: 2,
-              title: "Observed",
-              values: calculator.observed,
-            ),
-            CSResultColumn(
-              columnId: 3,
-              title: "Calculated",
+            TableColumn(
+              header: "Calculated",
               values: calculator.ithCalcValues,
             ),
           ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/poker_test/poker_calculator.dart';
-import 'package:stat_tests/poker_test/poker_result_column.dart';
 
 class PokerResultsScreen extends StatelessWidget {
   final PokerCalculator calculator;
@@ -18,19 +18,19 @@ class PokerResultsScreen extends StatelessWidget {
           physics: ClampingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            PokerResultColumn(
+            TableColumn(
               header: "Combinations",
               values: titles,
             ),
-            PokerResultColumn(
+            TableColumn(
               header: "Observed",
               values: calculator.observedFreqs,
             ),
-            PokerResultColumn(
+            TableColumn(
               header: "Expected",
               values: calculator.expectedFreqs,
             ),
-            PokerResultColumn(
+            TableColumn(
               header: "(O - E)**2 / E",
               values: calculator.ithCalcValues,
             ),

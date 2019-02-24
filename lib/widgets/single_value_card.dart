@@ -11,20 +11,23 @@ class SingleValueCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 12.0,
+        horizontal: 40.0,
         vertical: 8.0,
       ),
       child: Card(
         color: Colors.white,
-        elevation: 6.0,
+        elevation: 4.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         clipBehavior: Clip.antiAlias,
-        child: Center(
-          child: Text(
-            value,
-            style: Theme.of(context).textTheme.title,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Center(
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.title,
+            ),
           ),
         ),
       ),
