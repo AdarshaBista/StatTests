@@ -19,6 +19,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
   TextEditingController _twoPairFieldController;
   TextEditingController _threeSameFieldController;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -66,14 +68,16 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
 
   void _onCalculateButtonPressed() {
     // Navigate to results page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Poker4DigitResultsScreen(
-              calculator: _getCalculator(),
-            ),
-      ),
-    );
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Poker4DigitResultsScreen(
+                calculator: _getCalculator(),
+              ),
+        ),
+      );
+    }
   }
 
   Widget _buildAllSameInputField() => Padding(
@@ -137,20 +141,23 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
         context: context,
         title: "Poker Test",
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-          vertical: 10.0,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30.0,
+            vertical: 10.0,
+          ),
+          children: <Widget>[
+            _buildAllSameInputField(),
+            _buildAllDifferentInputField(),
+            _build1PairInputField(),
+            _build3SameInputField(),
+            _build2PairInputField(),
+            _buildCalculateButton(),
+          ],
         ),
-        children: <Widget>[
-          _buildAllSameInputField(),
-          _buildAllDifferentInputField(),
-          _build1PairInputField(),
-          _build3SameInputField(),
-          _build2PairInputField(),
-          _buildCalculateButton(),
-        ],
       ),
     );
   }

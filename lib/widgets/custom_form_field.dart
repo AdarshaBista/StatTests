@@ -11,6 +11,7 @@ class CustomFormField extends TextFormField {
           keyboardType: TextInputType.number,
           style: Theme.of(context).textTheme.subhead,
           maxLines: maxLines,
+          validator: (val) => val.isEmpty ? "Invalid Input" : null,
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(

@@ -18,6 +18,8 @@ class CSInputScreenState extends State<CSInputScreen> {
   TextEditingController _divFactorFieldController;
   TextEditingController _intervalWidthFieldController;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -55,14 +57,16 @@ class CSInputScreenState extends State<CSInputScreen> {
 
   void _onCalculateButtonPressed() {
     // Navigate to results page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CSResultsScreen(
-              calculator: _getCalculator(),
-            ),
-      ),
-    );
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CSResultsScreen(
+                calculator: _getCalculator(),
+              ),
+        ),
+      );
+    }
   }
 
   Widget _buildNumbersInputField() => Padding(
@@ -110,18 +114,21 @@ class CSInputScreenState extends State<CSInputScreen> {
         context: context,
         title: "Chi Square Test",
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-          vertical: 10.0,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30.0,
+            vertical: 10.0,
+          ),
+          children: <Widget>[
+            _buildNumbersInputField(),
+            _buildDivFactorInputField(),
+            _buildIntervalWidthInputField(),
+            _buildCalculateButton(),
+          ],
         ),
-        children: <Widget>[
-          _buildNumbersInputField(),
-          _buildDivFactorInputField(),
-          _buildIntervalWidthInputField(),
-          _buildCalculateButton(),
-        ],
       ),
     );
   }

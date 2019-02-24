@@ -17,6 +17,8 @@ class KSInputScreenState extends State<KSInputScreen> {
   TextEditingController _numbersFieldController;
   TextEditingController _divFactorFieldController;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -49,14 +51,16 @@ class KSInputScreenState extends State<KSInputScreen> {
 
   void _onCalculateButtonPressed() {
     // Navigate to results page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => KSResultsScreen(
-              calculator: _getCalculator(),
-            ),
-      ),
-    );
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => KSResultsScreen(
+                calculator: _getCalculator(),
+              ),
+        ),
+      );
+    }
   }
 
   Widget _buildNumbersInputField() => Padding(
@@ -94,17 +98,20 @@ class KSInputScreenState extends State<KSInputScreen> {
         context: context,
         title: "Kolmogorov Smirnov Test",
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-          vertical: 10.0,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30.0,
+            vertical: 10.0,
+          ),
+          children: <Widget>[
+            _buildNumbersInputField(),
+            _buildDivFactorInputField(),
+            _buildCalculateButton(),
+          ],
         ),
-        children: <Widget>[
-          _buildNumbersInputField(),
-          _buildDivFactorInputField(),
-          _buildCalculateButton(),
-        ],
       ),
     );
   }

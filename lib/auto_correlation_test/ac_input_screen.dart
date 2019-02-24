@@ -19,6 +19,8 @@ class ACInputScreenState extends State<ACInputScreen> {
   TextEditingController _ithNumberFieldController;
   TextEditingController _lagFieldController;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -60,14 +62,16 @@ class ACInputScreenState extends State<ACInputScreen> {
 
   void _onCalculateButtonPressed() {
     // Navigate to results page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ACResultsScreen(
-              calculator: _getCalculator(),
-            ),
-      ),
-    );
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ACResultsScreen(
+                calculator: _getCalculator(),
+              ),
+        ),
+      );
+    }
   }
 
   Widget _buildNumbersInputField() => Padding(
@@ -124,19 +128,22 @@ class ACInputScreenState extends State<ACInputScreen> {
         context: context,
         title: "Auto Correlation Test",
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-          vertical: 20.0,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30.0,
+            vertical: 20.0,
+          ),
+          children: <Widget>[
+            _buildNumbersInputField(),
+            _buildDivFactorInputField(),
+            _buildIthNumberInputField(),
+            _buildLagInputField(),
+            _buildCalculateButton(),
+          ],
         ),
-        children: <Widget>[
-          _buildNumbersInputField(),
-          _buildDivFactorInputField(),
-          _buildIthNumberInputField(),
-          _buildLagInputField(),
-          _buildCalculateButton(),
-        ],
       ),
     );
   }

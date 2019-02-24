@@ -18,6 +18,8 @@ class GapInputScreenState extends State<GapInputScreen> {
   TextEditingController _symbolsNumFieldController;
   TextEditingController _divFactorFieldController;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -52,14 +54,16 @@ class GapInputScreenState extends State<GapInputScreen> {
 
   void onCalculateButtonPressed() {
     // Navigate to results page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GapResultsScreen(
-              calculator: _getCalculator(),
-            ),
-      ),
-    );
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GapResultsScreen(
+                calculator: _getCalculator(),
+              ),
+        ),
+      );
+    }
   }
 
   Widget _buildNumbersInputField() => Padding(
@@ -98,17 +102,20 @@ class GapInputScreenState extends State<GapInputScreen> {
         context: context,
         title: "Gap Test",
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-          vertical: 10.0,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.symmetric(
+            horizontal: 30.0,
+            vertical: 10.0,
+          ),
+          children: <Widget>[
+            _buildNumbersInputField(),
+            _buildDivFactorInputField(),
+            _buildCalculateButton(),
+          ],
         ),
-        children: <Widget>[
-          _buildNumbersInputField(),
-          _buildDivFactorInputField(),
-          _buildCalculateButton(),
-        ],
       ),
     );
   }
