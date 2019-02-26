@@ -17,6 +17,7 @@ class GapInputScreenState extends State<GapInputScreen> {
   TextEditingController _numbersFieldController;
   TextEditingController _symbolsNumFieldController;
   TextEditingController _divFactorFieldController;
+  TextEditingController _gapLengthFieldController;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -26,6 +27,7 @@ class GapInputScreenState extends State<GapInputScreen> {
     _numbersFieldController = TextEditingController();
     _symbolsNumFieldController = TextEditingController();
     _divFactorFieldController = TextEditingController();
+    _gapLengthFieldController = TextEditingController();
   }
 
   @override
@@ -33,6 +35,7 @@ class GapInputScreenState extends State<GapInputScreen> {
     _numbersFieldController.dispose();
     _symbolsNumFieldController.dispose();
     _divFactorFieldController.dispose();
+    _gapLengthFieldController.dispose();
     super.dispose();
   }
 
@@ -40,15 +43,18 @@ class GapInputScreenState extends State<GapInputScreen> {
     // Capture the string in text fields
     String _numbersStr = _numbersFieldController.text.toString();
     String _divFactorStr = _divFactorFieldController.text.toString();
+    String _gapLengthStr = _gapLengthFieldController.text.toString();
 
     // Convert the string to required types
     double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
     List<double> _numbers = Utility.converStrToList(_numbersStr);
+    double _gapLength = double.tryParse(_gapLengthStr) ?? 0.0;
 
     // Create a auto correlation test calculator based on the
     return GapCalculator(
       numbers: _numbers,
       divFactor: _divFactor,
+      gapLength: _gapLength,
     );
   }
 
@@ -85,6 +91,15 @@ class GapInputScreenState extends State<GapInputScreen> {
         ),
       );
 
+  Widget _buildGapLengthInputField() => Padding(
+        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        child: CustomFormField(
+          context: context,
+          controller: _gapLengthFieldController,
+          hintText: "Enter gap length",
+        ),
+      );
+
   Widget _buildCalculateButton() => Padding(
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
@@ -113,6 +128,7 @@ class GapInputScreenState extends State<GapInputScreen> {
           children: <Widget>[
             _buildNumbersInputField(),
             _buildDivFactorInputField(),
+            _buildGapLengthInputField(),
             _buildCalculateButton(),
           ],
         ),
