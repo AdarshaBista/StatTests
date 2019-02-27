@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -63,10 +64,10 @@ class GapInputScreenState extends State<GapInputScreen> {
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => GapResultsScreen(
-                calculator: _getCalculator(),
-              ),
+        SlideUpTransition(
+          widget: GapResultsScreen(
+            calculator: _getCalculator(),
+          ),
         ),
       );
     }

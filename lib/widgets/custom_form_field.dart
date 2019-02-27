@@ -5,13 +5,14 @@ class CustomFormField extends TextFormField {
       {BuildContext context,
       TextEditingController controller,
       String hintText,
+      FormFieldValidator<String> validator,
       int maxLines: 1})
       : super(
           controller: controller,
           keyboardType: TextInputType.number,
           style: Theme.of(context).textTheme.subhead,
           maxLines: maxLines,
-          validator: (val) => val.isEmpty ? "Invalid Input" : null,
+          validator: validator,
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(

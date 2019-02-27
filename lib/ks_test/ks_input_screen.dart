@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/input_validators.dart';
+import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
@@ -54,10 +56,10 @@ class KSInputScreenState extends State<KSInputScreen> {
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => KSResultsScreen(
-                calculator: _getCalculator(),
-              ),
+       SlideUpTransition(
+          widget: KSResultsScreen(
+            calculator: _getCalculator(),
+          ),
         ),
       );
     }
@@ -69,6 +71,7 @@ class KSInputScreenState extends State<KSInputScreen> {
           context: context,
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
+          validator: (val) => InputValidators.validateNumbersField(val),
         ),
       );
 

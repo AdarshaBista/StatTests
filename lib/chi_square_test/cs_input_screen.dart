@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
@@ -60,10 +61,10 @@ class CSInputScreenState extends State<CSInputScreen> {
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => CSResultsScreen(
-                calculator: _getCalculator(),
-              ),
+        SlideUpTransition(
+          widget: CSResultsScreen(
+            calculator: _getCalculator(),
+          ),
         ),
       );
     }

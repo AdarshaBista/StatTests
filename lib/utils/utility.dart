@@ -5,6 +5,10 @@ class StatInterval {
   final double end;
 
   StatInterval(this.start, this.end);
+
+  void printInterval() {
+    print("$start - $end");
+  }
 }
 
 class Utility {
@@ -65,8 +69,20 @@ class Utility {
     return list.reduce(max);
   }
 
+  static int findLargestInt(List<int> list) {
+    return list.reduce(max);
+  }
+
   // Find smallest number
   static double findSmallest(List<double> list) {
     return list.reduce(min);
+  }
+
+  // Check if string is numeric
+  static bool isNumeric(String str) {
+    if (str == null) {
+      return false;
+    }
+    return num.tryParse(str) != null;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -59,10 +60,10 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => Poker3DigitResultsScreen(
-                calculator: _getCalculator(),
-              ),
+        SlideUpTransition(
+          widget: Poker3DigitResultsScreen(
+            calculator: _getCalculator(),
+          ),
         ),
       );
     }

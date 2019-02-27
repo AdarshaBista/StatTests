@@ -24,7 +24,6 @@ class GapCalculator {
     symbols.sort();
     total = numbers.length - symbols.length;
     _populateGapMap();
-    print(gapMap);
 
     List<int> flattenedMapValues = gapMap.values.expand((i) => i).toList();
 
@@ -37,17 +36,11 @@ class GapCalculator {
 
     gapIntervals.forEach((n) => n.printInterval());
     _calculateFreq();
-    print(frequency);
     _calculateRelativeFreq();
-    print(relativeFrequency);
     _calculateCumulativeFreq();
-    print(cumulativeFrequency);
     _calculateFOfX();
-    print(fOfx);
     _calculateFOfxMinusSOfx();
-    print(fOfxMinusSOfx);
     _claculateDCalc();
-    print(dCalc);
   }
 
   void _populateGapMap() {
