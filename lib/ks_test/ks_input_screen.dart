@@ -81,6 +81,7 @@ class KSInputScreenState extends State<KSInputScreen> {
           context: context,
           controller: _divFactorFieldController,
           hintText: "Enter division factor",
+          validator: (val) => InputValidators.validateNonZeroField(val),
         ),
       );
 

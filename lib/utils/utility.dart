@@ -72,11 +72,16 @@ class Utility {
     return list.reduce(min);
   }
 
-  // Check if string is numeric
-  static bool isNumeric(List<String> list) {
+  // Check if each string in a list of string is numeric
+  static bool isListNumeric(List<String> list) {
     for (String str in list) {
       if (double.tryParse(str) == null) return false;
     }
     return true;
+  }
+
+  // Check if a string is numeric
+  static bool isStrNumeric(String str) {
+      return num.tryParse(str) != null;
   }
 }

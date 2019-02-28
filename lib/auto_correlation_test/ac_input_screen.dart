@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
@@ -81,6 +82,7 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
+          validator: (val) => InputValidators.validateNumbersField(val),
           maxLines: 3,
         ),
       );
@@ -91,6 +93,7 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _divFactorFieldController,
           hintText: "Enter division factor",
+          validator: (val) => InputValidators.validateNonZeroField(val),
         ),
       );
 
@@ -100,6 +103,7 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _ithNumberFieldController,
           hintText: "Enter ith number",
+          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 
@@ -109,6 +113,7 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _lagFieldController,
           hintText: "Enter lag",
+          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 

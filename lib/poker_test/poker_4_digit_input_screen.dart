@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
@@ -87,6 +88,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _allSameFieldController,
           hintText: "All same",
+          validator: (val) => InputValidators.validatePositiveField(val),
         ),
       );
 
@@ -96,6 +98,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _allDiffFieldController,
           hintText: "All different",
+          validator: (val) => InputValidators.validatePositiveField(val),
         ),
       );
 
@@ -105,6 +108,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _onePairFieldController,
           hintText: "1 pair",
+          validator: (val) => InputValidators.validatePositiveField(val),
         ),
       );
 
@@ -114,6 +118,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _twoPairFieldController,
           hintText: "2 pair",
+          validator: (val) => InputValidators.validatePositiveField(val),
         ),
       );
 
@@ -123,6 +128,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _threeSameFieldController,
           hintText: "3 same",
+          validator: (val) => InputValidators.validatePositiveField(val),
         ),
       );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
@@ -76,6 +77,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           context: context,
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
+          validator: (val) => InputValidators.validateNumbersField(val),
           maxLines: 3,
         ),
       );
@@ -86,6 +88,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           context: context,
           controller: _divFactorFieldController,
           hintText: "Enter division factor",
+          validator: (val) => InputValidators.validateNonZeroField(val),
         ),
       );
 
@@ -95,6 +98,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           context: context,
           controller: _intervalWidthFieldController,
           hintText: "Enter interval width",
+          validator: (val) => InputValidators.validateNonZeroPositiveField(val),
         ),
       );
 

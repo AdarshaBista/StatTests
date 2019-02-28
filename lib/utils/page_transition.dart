@@ -13,7 +13,7 @@ class SlideUpTransition extends PageRouteBuilder {
                   Widget child) =>
               SlideTransition(
                 position: Tween<Offset>(
-                  begin: Offset(0.0, 1.0),
+                  begin: Offset(0.0, -1.0),
                   end: Offset.zero,
                 ).animate(animation),
                 child: child,
