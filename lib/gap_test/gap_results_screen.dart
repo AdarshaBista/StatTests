@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/utils/stat_interval.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/gap_test/gap_calculator.dart';

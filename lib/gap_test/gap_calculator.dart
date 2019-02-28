@@ -1,3 +1,4 @@
+import 'package:stat_tests/utils/stat_interval.dart';
 import 'package:stat_tests/utils/utility.dart';
 import 'dart:math';
 
