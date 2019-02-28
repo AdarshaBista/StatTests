@@ -14,10 +14,7 @@ class CSResultsScreen extends StatelessWidget {
   List<String> _getIntervalList() {
     List<StatInterval> intervals = calculator.intervals;
     List<String> observedStrList = List.generate(
-        intervals.length,
-        (int index) => (intervals[index].start.toString() +
-            " - " +
-            intervals[index].end.toString()));
+        intervals.length, (int index) => intervals[index].toString());
     return observedStrList;
   }
 

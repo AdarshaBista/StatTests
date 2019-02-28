@@ -7,4 +7,8 @@ class StatInterval {
   void printInterval() {
     print("$start - $end");
   }
+
+  String toString() {
+    return "$start - $end";
+  }
 }

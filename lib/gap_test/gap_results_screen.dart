@@ -16,9 +16,7 @@ class GapResultsScreen extends StatelessWidget {
     List<StatInterval> intervals = calculator.gapIntervals;
     List<String> observedStrList = List.generate(
         intervals.length,
-        (int index) => (intervals[index].start.toString() +
-            " - " +
-            intervals[index].end.toString()));
+        (int index) => intervals[index].toString());
     return observedStrList;
   }
 
