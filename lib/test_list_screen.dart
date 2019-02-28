@@ -38,24 +38,19 @@ class TestListScreenState extends State<TestListScreen>
       bottomNavigationBar: Material(
         color: Theme.of(context).primaryColor,
         child: TabBar(
-          indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
+          isScrollable: true,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorColor: Colors.white,
+          indicatorPadding: EdgeInsets.only(bottom: 6.0),
+          labelStyle:
+              Theme.of(context).textTheme.subhead.copyWith(color: Colors.white),
           tabs: <Widget>[
-            Tab(
-              text: "CST",
-            ),
-            Tab(
-              text: "KST",
-            ),
-            Tab(
-              text: "GT",
-            ),
-            Tab(
-              text: "ACT",
-            ),
-            Tab(
-              text: "PT",
-            ),
+            Tab(text: "Chi Square"),
+            Tab(text: "Kolmogorov Smirnov"),
+            Tab(text: "Gap"),
+            Tab(text: "Auto Correlation"),
+            Tab(text: "Poker"),
           ],
         ),
       ),
