@@ -13,20 +13,24 @@ class StatInterval {
 
 class Utility {
   // Converts string to list of doubles
-  static List<double> converStrToList(String numbersStr,
+  static List<double> toDoubleList(String numbersStr,
       [double divFactor = 1.0]) {
-    // Remove whitespaces
-    numbersStr = numbersStr.trim();
-    List<String> numbersStrList = numbersStr.split(RegExp('\\s+'));
+    // Convert str to list of substring
+    List<String> numbersStrList = convertStrToList(numbersStr);
 
-    // Convert List of String to List of double
+    // Convert each substring to double
     List<double> numbers = [];
-    numbersStrList.forEach((numberStr) {
-      double number = (double.tryParse(numberStr) ?? 0.0) / divFactor;
+    numbersStrList.forEach((str) {
+      double number = (double.tryParse(str) ?? 0.0) / divFactor;
       numbers.add(number);
     });
 
     return numbers;
+  }
+
+  static List<String> convertStrToList(String numbersStr) {
+    numbersStr = numbersStr.trim();
+    return numbersStr.split(RegExp('\\s+'));
   }
 
   // Create intervals with given width
@@ -79,10 +83,10 @@ class Utility {
   }
 
   // Check if string is numeric
-  static bool isNumeric(String str) {
-    if (str == null) {
-      return false;
+  static bool isNumeric(List<String> list) {
+    for (String str in list) {
+      if (double.tryParse(str) == null) return false;
     }
-    return num.tryParse(str) != null;
+    return true;
   }
 }

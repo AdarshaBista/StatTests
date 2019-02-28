@@ -51,7 +51,7 @@ class ACInputScreenState extends State<ACInputScreen> {
     double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
     int _ithNumber = (int.tryParse(_ithNumberStr) - 1) ?? 0;
     int _lag = int.tryParse(_lagStr) ?? 1;
-    List<double> _numbers = Utility.converStrToList(_numbersStr, _divFactor);
+    List<double> _numbers = Utility.toDoubleList(_numbersStr, _divFactor);
 
     // Create a auto correlation test calculator
     return ACCalculator(

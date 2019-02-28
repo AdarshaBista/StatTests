@@ -48,7 +48,7 @@ class GapInputScreenState extends State<GapInputScreen> {
 
     // Convert the string to required types
     double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    List<double> _numbers = Utility.converStrToList(_numbersStr);
+    List<double> _numbers = Utility.toDoubleList(_numbersStr);
     double _gapLength = double.tryParse(_gapLengthStr) ?? 0.0;
 
     // Create a auto correlation test calculator based on the

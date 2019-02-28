@@ -45,7 +45,7 @@ class CSInputScreenState extends State<CSInputScreen> {
 
     // Convert the string to required types
     double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    List<double> _numbers = Utility.converStrToList(_numbersStr, _divFactor);
+    List<double> _numbers = Utility.toDoubleList(_numbersStr, _divFactor);
     double _intervalWidth = double.tryParse(_intervalWidthStr) ?? 0.0;
 
     // Create a chi square test calculator
