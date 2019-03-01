@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:stat_tests/utils/utility.dart';
 
 class ACCalculator {
   final double divFactor;
@@ -6,36 +7,44 @@ class ACCalculator {
   final int ithNumber;
   final int lag;
 
+  int _capitalM;
+  double _sigmaRho;
+  double _rho;
+  double _sum;
+  double _zCalc;
+
   ACCalculator({this.numbers, this.divFactor, this.ithNumber, this.lag});
 
-  int calculateCapitalM() {
-    int capitalM = (numbers.length - lag - ithNumber) ~/ lag;
-    return capitalM;
+  int get capitalM => _capitalM;
+  double get sigmaRho => _sigmaRho;
+  double get rho => _rho;
+  double get sum => _sum;
+  double get zCalc => _zCalc;
+
+  void calculateCapitalM() {
+    _capitalM = (numbers.length - lag - ithNumber) ~/ lag;
   }
 
-  double calculateSigmaRhoIm(int capitalM) {
-    double numerator = sqrt(13 * capitalM + 7);
-    double denominator = 12 * (capitalM + 1.0);
-    double sigmaRhoIm = numerator / denominator;
-    return sigmaRhoIm;
+  void calculateSigmaRhoIm() {
+    double numerator = sqrt(13 * _capitalM + 7);
+    double denominator = 12 * (_capitalM + 1.0);
+    _sigmaRho = Utility.setPrecisionTo4(numerator / denominator);
   }
 
-  double calculateRhoIm(int capitalM) {
-    double oneOverMPlusOne = 1.0 / (capitalM + 1.0);
+  void calculateRhoIm() {
+    double oneOverMPlusOne = 1.0 / (_capitalM + 1.0);
 
-    double sum = 0.0;
-    for (int k = 0; k <= capitalM; ++k) {
+    _sum = 0.0;
+    for (int k = 0; k <= _capitalM; ++k) {
       double firstNum = numbers[ithNumber + k * lag];
       double secondNum = numbers[ithNumber + (k + 1) * lag];
 
-      sum += (firstNum * secondNum);
+      _sum += Utility.setPrecisionTo4(firstNum * secondNum);
     }
-    double rhoIm = oneOverMPlusOne * sum - 0.25;
-    return rhoIm;
+    _rho = Utility.setPrecisionTo4(oneOverMPlusOne * _sum - 0.25);
   }
 
-  double calculateZcalc(double rhoIm, double sigmaRhoIm) {
-    double zCalc = rhoIm / sigmaRhoIm;
-    return zCalc;
+  void calculateZcalc() {
+    _zCalc = Utility.setPrecisionTo4(_rho / _sigmaRho);
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
-import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
+import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
 import 'package:stat_tests/auto_correlation_test/ac_results_screen.dart';
 
@@ -20,7 +20,6 @@ class ACInputScreenState extends State<ACInputScreen> {
   TextEditingController _divFactorFieldController;
   TextEditingController _ithNumberFieldController;
   TextEditingController _lagFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -43,23 +42,24 @@ class ACInputScreenState extends State<ACInputScreen> {
 
   ACCalculator _getCalculator() {
     // Capture the string in text fields
-    String _numbersStr = _numbersFieldController.text.toString();
-    String _divFactorStr = _divFactorFieldController.text.toString();
-    String _ithNumberStr = _ithNumberFieldController.text.toString();
-    String _lagStr = _lagFieldController.text.toString();
+    String numbersStr = _numbersFieldController.text.toString();
+    String divFactorStr = _divFactorFieldController.text.toString();
+    String ithNumberStr = _ithNumberFieldController.text.toString();
+    String lagStr = _lagFieldController.text.toString();
 
     // Convert the string to required types
-    double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    int _ithNumber = (int.tryParse(_ithNumberStr) - 1) ?? 0;
-    int _lag = int.tryParse(_lagStr) ?? 1;
-    List<double> _numbers = Utility.toDoubleList(_numbersStr, _divFactor);
+    double divFactor = double.tryParse(divFactorStr) ?? 1.0;
+    int ithNumber = (int.tryParse(ithNumberStr) - 1) ?? 0;
+    int lag = int.tryParse(lagStr) ?? 2;
+    List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
 
     // Create a auto correlation test calculator
     return ACCalculator(
-        numbers: _numbers,
-        divFactor: _divFactor,
-        ithNumber: _ithNumber,
-        lag: _lag);
+      numbers: numbers,
+      divFactor: divFactor,
+      ithNumber: ithNumber,
+      lag: lag,
+    );
   }
 
   void _onCalculateButtonPressed() {
@@ -103,7 +103,8 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _ithNumberFieldController,
           hintText: "Enter ith number",
-          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
+          validator: (val) =>
+              InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 
@@ -113,7 +114,8 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _lagFieldController,
           hintText: "Enter lag",
-          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
+          validator: (val) =>
+              InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 

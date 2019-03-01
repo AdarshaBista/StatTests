@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
 
 class ACResultsScreen extends StatelessWidget {
   final ACCalculator calculator;
-  int capitalM;
-  double sigmaRhoIm;
-  double rhoIm;
-  double zCalc;
 
-  ACResultsScreen({this.calculator}) {
-    capitalM = calculator.calculateCapitalM();
-    sigmaRhoIm =
-        Utility.setPrecisionTo4(calculator.calculateSigmaRhoIm(capitalM));
-    rhoIm = Utility.setPrecisionTo4(calculator.calculateRhoIm(capitalM));
-    zCalc =
-        Utility.setPrecisionTo4(calculator.calculateZcalc(rhoIm, sigmaRhoIm));
-  }
+  ACResultsScreen({this.calculator});
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +17,23 @@ class ACResultsScreen extends StatelessWidget {
       ),
       body: ListView(
         physics: BouncingScrollPhysics(),
-        itemExtent: 90.0,
+        itemExtent: 80.0,
         shrinkWrap: true,
         children: <Widget>[
           SingleValueCard(
-            value: "M = $capitalM",
+            value: "M = ${calculator.capitalM}",
           ),
           SingleValueCard(
-            value: "Rho = $rhoIm",
+            value: "Sum = ${calculator.sum}",
           ),
           SingleValueCard(
-            value: "Sigma Rho = $sigmaRhoIm",
+            value: "Rho = ${calculator.rho}",
           ),
           SingleValueCard(
-            value: "Zo = $zCalc",
+            value: "Sigma Rho = ${calculator.sigmaRho}",
+          ),
+          SingleValueCard(
+            value: "Zo = ${calculator.zCalc}",
           ),
         ],
       ),
