@@ -27,7 +27,7 @@ class GapResultCard extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),

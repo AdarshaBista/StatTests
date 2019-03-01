@@ -15,34 +15,43 @@ class GapResultsScreen extends StatelessWidget {
   List<String> _getGapInterval() {
     List<StatInterval> intervals = calculator.gapIntervals;
     List<String> observedStrList = List.generate(
-        intervals.length,
-        (int index) => intervals[index].toString());
+        intervals.length, (int index) => intervals[index].toString());
     return observedStrList;
   }
 
-  Widget _buildGapsCard() => Container(
-        height: 160,
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: calculator.gapMap.length,
-          itemBuilder: (BuildContext context, int index) {
-            double key = calculator.gapMap.keys.elementAt(index);
-            return GapResultCard(
-              title: key.toString(),
-              list: calculator.gapMap[key].toString(),
-              listSize: calculator.gapMap[key].length.toString(),
-            );
-          },
-        ),
-      );
+  Widget _buildGapsCard() {
+    List<int> lengths = List.generate(calculator.gapMap.length, (int index) {
+      double key = calculator.gapMap.keys.elementAt(index);
+      return calculator.gapMap[key].length;
+    });
+
+    int numOfLInes = (Utility.findLargestInt(lengths) ~/ 8) + 1;
+    double height = 50 + numOfLInes.toDouble() * 30.0 + 50;
+
+    return Container(
+      height: height,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: calculator.gapMap.length,
+        itemBuilder: (BuildContext context, int index) {
+          double key = calculator.gapMap.keys.elementAt(index);
+          return GapResultCard(
+            title: key.toString(),
+            list: calculator.gapMap[key].toString(),
+            listSize: calculator.gapMap[key].length.toString(),
+          );
+        },
+      ),
+    );
+  }
 
   Widget _buildTable() => SizedBox(
         height: (calculator.gapIntervals.length + 2).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          physics: ClampingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           children: <Widget>[
             TableColumn(
               header: "Gap Length",
