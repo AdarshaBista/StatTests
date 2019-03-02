@@ -1,15 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import './test_list_screen.dart';
+import 'package:stat_tests/test_list_screen.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(Main());
+    runApp(StatTestsApp());
   });
 }
 
-class Main extends StatelessWidget {
+class StatTestsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
