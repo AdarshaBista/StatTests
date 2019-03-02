@@ -83,7 +83,7 @@ class ACInputScreenState extends State<ACInputScreen> {
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
           validator: (val) => InputValidators.validateNumbersField(val),
-          maxLines: 3,
+          maxLines: null,
         ),
       );
 

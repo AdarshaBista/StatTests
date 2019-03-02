@@ -77,7 +77,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
           validator: (val) => InputValidators.validateNumbersField(val),
-          maxLines: 3,
+          maxLines: null,
         ),
       );
 

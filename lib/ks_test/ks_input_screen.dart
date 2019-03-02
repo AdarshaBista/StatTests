@@ -71,6 +71,7 @@ class KSInputScreenState extends State<KSInputScreen> {
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
           validator: (val) => InputValidators.validateNumbersField(val),
+          maxLines: null,
         ),
       );
 
