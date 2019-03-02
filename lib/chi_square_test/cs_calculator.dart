@@ -53,13 +53,14 @@ class CSCalculator {
   }
 
   void _calculateChiSquare() {
-    _chiSquareCalc = 0.0;
+    double sum = 0.0;
     for (int i = 0; i < _intervals.length; ++i) {
       double diff = _observed[i] - _expected;
       double diffSquared = diff * diff;
       double ithCalcValue = Utility.setPrecisionTo4(diffSquared / _expected);
       _ithCalcValues.add(ithCalcValue);
-      _chiSquareCalc += ithCalcValue;
+      sum += ithCalcValue;
     }
+    _chiSquareCalc = Utility.setPrecisionTo4(sum);
   }
 }
