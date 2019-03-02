@@ -13,25 +13,30 @@ class ACCalculator {
   double _sum;
   double _zCalc;
 
-  ACCalculator({this.numbers, this.divFactor, this.ithNumber, this.lag});
-
   int get capitalM => _capitalM;
   double get sigmaRho => _sigmaRho;
   double get rho => _rho;
   double get sum => _sum;
   double get zCalc => _zCalc;
 
-  void calculateCapitalM() {
+  ACCalculator({this.numbers, this.divFactor, this.ithNumber, this.lag}) {
+    _calculateCapitalM();
+    _calculateSigmaRho();
+    _calculateRho();
+    _calculateZCalc();
+  }
+
+  void _calculateCapitalM() {
     _capitalM = (numbers.length - lag - ithNumber) ~/ lag;
   }
 
-  void calculateSigmaRhoIm() {
+  void _calculateSigmaRho() {
     double numerator = sqrt(13 * _capitalM + 7);
     double denominator = 12 * (_capitalM + 1.0);
     _sigmaRho = Utility.setPrecisionTo4(numerator / denominator);
   }
 
-  void calculateRhoIm() {
+  void _calculateRho() {
     double oneOverMPlusOne = 1.0 / (_capitalM + 1.0);
 
     _sum = 0.0;
@@ -44,7 +49,7 @@ class ACCalculator {
     _rho = Utility.setPrecisionTo4(oneOverMPlusOne * _sum - 0.25);
   }
 
-  void calculateZcalc() {
+  void _calculateZCalc() {
     _zCalc = Utility.setPrecisionTo4(_rho / _sigmaRho);
   }
 }

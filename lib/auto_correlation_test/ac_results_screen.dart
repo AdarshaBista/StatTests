@@ -17,7 +17,6 @@ class ACResultsScreen extends StatelessWidget {
       ),
       body: ListView(
         physics: BouncingScrollPhysics(),
-        itemExtent: 80.0,
         shrinkWrap: true,
         children: <Widget>[
           SingleValueCard(
