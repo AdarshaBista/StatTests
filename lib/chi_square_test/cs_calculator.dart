@@ -25,15 +25,18 @@ class CSCalculator {
   }
 
   CSCalculator({this.numbers, this.divFactor, this.intervalWidth}) {
+    _populateIntervals();
+    _calculateObserved();
+    _expected = Utility.setPrecisionTo4(numbers.length / _intervals.length);
+    _calculateChiSquare();
+  }
+
+  void _populateIntervals() {
     double largestNumber = Utility.findLargest(numbers);
     double smallestNumber = Utility.findSmallest(numbers);
 
     _intervals = Utility.createIntervals(
         smallestNumber, largestNumber, intervalWidth, divFactor);
-    
-    _calculateObserved();
-    _expected = Utility.setPrecisionTo4(numbers.length / _intervals.length);
-    _calculateChiSquare();
   }
 
   void _calculateObserved() {
