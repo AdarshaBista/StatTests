@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
-import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
+import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/gap_test/gap_calculator.dart';
 import 'package:stat_tests/gap_test/gap_results_screen.dart';
 
@@ -20,7 +20,6 @@ class GapInputScreenState extends State<GapInputScreen> {
   TextEditingController _symbolsNumFieldController;
   TextEditingController _divFactorFieldController;
   TextEditingController _gapLengthFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -43,20 +42,20 @@ class GapInputScreenState extends State<GapInputScreen> {
 
   GapCalculator _getCalculator() {
     // Capture the string in text fields
-    String _numbersStr = _numbersFieldController.text.toString();
-    String _divFactorStr = _divFactorFieldController.text.toString();
-    String _gapLengthStr = _gapLengthFieldController.text.toString();
+    String numbersStr = _numbersFieldController.text.toString();
+    String divFactorStr = _divFactorFieldController.text.toString();
+    String gapLengthStr = _gapLengthFieldController.text.toString();
 
     // Convert the string to required types
-    double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    List<double> _numbers = Utility.toDoubleList(_numbersStr);
-    double _gapLength = double.tryParse(_gapLengthStr) ?? 0.0;
+    double divFactor = double.tryParse(divFactorStr) ?? 1.0;
+    double gapLength = double.tryParse(gapLengthStr) ?? 1.0;
+    List<double> numbers = Utility.toDoubleList(numbersStr);
 
-    // Create a auto correlation test calculator based on the
+    // Create a gap test calculator
     return GapCalculator(
-      numbers: _numbers,
-      divFactor: _divFactor,
-      gapLength: _gapLength,
+      numbers: numbers,
+      divFactor: divFactor,
+      gapLength: gapLength,
     );
   }
 
@@ -81,7 +80,7 @@ class GapInputScreenState extends State<GapInputScreen> {
           controller: _numbersFieldController,
           hintText: "Enter space separated Numbers",
           validator: (val) => InputValidators.validateNumbersField(val),
-          maxLines: 3,
+          maxLines: null,
         ),
       );
 
@@ -128,7 +127,7 @@ class GapInputScreenState extends State<GapInputScreen> {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 30.0,
-            vertical: 10.0,
+            vertical: 20.0,
           ),
           children: <Widget>[
             _buildNumbersInputField(),

@@ -59,16 +59,12 @@ class Utility {
   }
 
   // Find largest number
-  static double findLargest(List<double> list) {
-    return list.reduce(max);
-  }
-
-  static int findLargestInt(List<int> list) {
+  static num findLargest(List<num> list) {
     return list.reduce(max);
   }
 
   // Find smallest number
-  static double findSmallest(List<double> list) {
+  static num findSmallest(List<num> list) {
     return list.reduce(min);
   }
 
@@ -82,6 +78,6 @@ class Utility {
 
   // Check if a string is numeric
   static bool isStrNumeric(String str) {
-      return num.tryParse(str) != null;
+    return num.tryParse(str) != null;
   }
 }

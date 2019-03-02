@@ -1,53 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/stat_interval.dart';
-import 'package:stat_tests/utils/utility.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
+import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/gap_test/gap_calculator.dart';
 import 'package:stat_tests/gap_test/gap_result_card.dart';
-import 'package:stat_tests/widgets/single_value_card.dart';
-import 'package:stat_tests/widgets/table_column.dart';
 
 class GapResultsScreen extends StatelessWidget {
   final GapCalculator calculator;
 
   GapResultsScreen({this.calculator});
 
-  List<String> _getGapInterval() {
-    List<StatInterval> intervals = calculator.gapIntervals;
-    List<String> observedStrList = List.generate(
-        intervals.length, (int index) => intervals[index].toString());
-    return observedStrList;
-  }
-
-  Widget _buildGapsCard() {
-    List<int> lengths = List.generate(calculator.gapMap.length, (int index) {
-      double key = calculator.gapMap.keys.elementAt(index);
-      return calculator.gapMap[key].length;
-    });
-
-    int numOfLInes = (Utility.findLargestInt(lengths) ~/ 8) + 1;
-    double height = 50 + numOfLInes.toDouble() * 30.0 + 50;
-
+  Widget _buildGapsCard(BuildContext context) {
     return Container(
-      height: height,
-      child: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
+      height: MediaQuery.of(context).size.height / 3,
+      child: StaggeredGridView.countBuilder(
+        physics: ClampingScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
         itemCount: calculator.gapMap.length,
         itemBuilder: (BuildContext context, int index) {
           double key = calculator.gapMap.keys.elementAt(index);
           return GapResultCard(
-            title: key.toString(),
+            symbol: key.toString(),
             list: calculator.gapMap[key].toString(),
-            listSize: calculator.gapMap[key].length.toString(),
+            listLength: calculator.gapMap[key].length.toString(),
           );
         },
+        staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
       ),
     );
   }
 
   Widget _buildTable() => SizedBox(
-        height: (calculator.gapIntervals.length + 2).toDouble() * 30.0,
+        height: 50 + (calculator.intervals.length).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -55,27 +42,27 @@ class GapResultsScreen extends StatelessWidget {
           children: <Widget>[
             TableColumn(
               header: "Gap Length",
-              values: _getGapInterval(),
+              values: calculator.intervals,
             ),
             TableColumn(
               header: "Frequency",
-              values: calculator.frequency,
+              values: calculator.frequencies,
             ),
             TableColumn(
-              header: "Relative Frequency",
-              values: calculator.relativeFrequency,
+              header: "Relative Freq",
+              values: calculator.relativeFreqs,
             ),
             TableColumn(
-              header: "Cumulative Frequency",
-              values: calculator.cumulativeFrequency,
+              header: "Cumulative Freq",
+              values: calculator.cumulativeFreqs,
             ),
             TableColumn(
               header: "F(x)",
-              values: calculator.fOfx,
+              values: calculator.fOfX,
             ),
             TableColumn(
               header: "|F(x) - Sn(x)|",
-              values: calculator.fOfxMinusSOfx,
+              values: calculator.fOfxMinusSOfX,
             ),
           ],
         ),
@@ -95,7 +82,7 @@ class GapResultsScreen extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: <Widget>[
-          _buildGapsCard(),
+          _buildGapsCard(context),
           _buildTable(),
           _buildResultsCard(),
         ],
