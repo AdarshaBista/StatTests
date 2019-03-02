@@ -109,7 +109,7 @@ class GapInputScreenState extends State<GapInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "Calculate",
+          label: "Calculate",
           onPressed: onCalculateButtonPressed,
         ),
       );

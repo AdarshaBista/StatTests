@@ -105,7 +105,7 @@ class CSInputScreenState extends State<CSInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "Calculate",
+          label: "Calculate",
           onPressed: _onCalculateButtonPressed,
         ),
       );

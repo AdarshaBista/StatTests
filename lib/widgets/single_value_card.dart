@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 class SingleValueCard extends StatelessWidget {
   final String value;
 
-  SingleValueCard({
-    this.value,
-  });
+  SingleValueCard({this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +16,11 @@ class SingleValueCard extends StatelessWidget {
         color: Colors.white,
         elevation: 4.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         clipBehavior: Clip.antiAlias,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(10.0),
           child: Center(
             child: Text(
               value,

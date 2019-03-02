@@ -16,7 +16,7 @@ class CustomFormField extends TextFormField {
           decoration: InputDecoration(
             fillColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(
                 color: Theme.of(context).primaryColor,
                 width: 1.5,
@@ -24,7 +24,7 @@ class CustomFormField extends TextFormField {
             ),
             hintText: hintText,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(
                 color: Colors.grey,
                 width: 1.0,

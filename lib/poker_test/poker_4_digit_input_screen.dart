@@ -135,7 +135,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "Calculate",
+          label: "Calculate",
           onPressed: _onCalculateButtonPressed,
         ),
       );

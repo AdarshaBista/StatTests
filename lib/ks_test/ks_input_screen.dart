@@ -88,7 +88,7 @@ class KSInputScreenState extends State<KSInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "Calculate",
+          label: "Calculate",
           onPressed: _onCalculateButtonPressed,
         ),
       );

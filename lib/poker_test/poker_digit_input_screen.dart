@@ -36,7 +36,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "3 digits",
+          label: "3 digits",
           onPressed: _on3DigitButtonPressed,
         ),
       );
@@ -45,7 +45,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
         padding: const EdgeInsets.all(16.0),
         child: CustomButton(
           context: context,
-          text: "4 digits",
+          label: "4 digits",
           onPressed: _on4DigitButtonPressed,
         ),
       );

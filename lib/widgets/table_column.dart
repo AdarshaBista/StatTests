@@ -23,10 +23,10 @@ class TableColumn extends StatelessWidget {
             child: Center(
               child: Text(
                 header,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
+                style: Theme.of(context).textTheme.headline.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
             ),
           ),
