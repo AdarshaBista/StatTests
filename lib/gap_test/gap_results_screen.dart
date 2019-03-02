@@ -13,9 +13,9 @@ class GapResultsScreen extends StatelessWidget {
 
   Widget _buildGapsCard(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 3,
+      height: MediaQuery.of(context).size.height / 2,
       child: StaggeredGridView.countBuilder(
-        physics: ClampingScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         crossAxisCount: 2,
         mainAxisSpacing: 4.0,
         crossAxisSpacing: 4.0,

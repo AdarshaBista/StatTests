@@ -62,12 +62,12 @@ class Utility {
   }
 
   // Find largest number in a list
-  static num findLargest(List<num> list) {
+  static double findLargest(List<double> list) {
     return list.reduce(max);
   }
 
   // Find smallest number in a list
-  static num findSmallest(List<num> list) {
+  static double findSmallest(List<double> list) {
     return list.reduce(min);
   }
 

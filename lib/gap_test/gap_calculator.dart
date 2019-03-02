@@ -74,7 +74,10 @@ class GapCalculator {
   }
 
   void _populateIntervals() {
-    List<int> flattenedMapValues = _gapMap.values.expand((i) => i).toList();
+    List<int> flattenedMapValuesInt = _gapMap.values.expand((i) => i).toList();
+    List<double> flattenedMapValues = List.generate(
+        flattenedMapValuesInt.length,
+        (int index) => flattenedMapValuesInt[index].toDouble());
     double largestNumber = Utility.findLargest(flattenedMapValues);
     double smallestNumber = Utility.findSmallest(flattenedMapValues);
 

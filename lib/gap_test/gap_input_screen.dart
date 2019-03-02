@@ -59,7 +59,7 @@ class GapInputScreenState extends State<GapInputScreen> {
     );
   }
 
-  void onCalculateButtonPressed() {
+  void _onCalculateButtonPressed() {
     // Navigate to results page
     if (_formKey.currentState.validate()) {
       Navigator.push(
@@ -109,7 +109,7 @@ class GapInputScreenState extends State<GapInputScreen> {
         child: CustomButton(
           context: context,
           label: "Calculate",
-          onPressed: onCalculateButtonPressed,
+          onPressed: _onCalculateButtonPressed,
         ),
       );
 
