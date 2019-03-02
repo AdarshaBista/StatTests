@@ -1,33 +1,44 @@
-import 'package:stat_tests/utils/stat_interval.dart';
 import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/utils/stat_interval.dart';
 
 class CSCalculator {
-  List<double> numbers;
+  final List<double> numbers;
   final double divFactor;
   final double intervalWidth;
 
-  double smallestNumber;
-  double largestNumber;
-  double expected;
-  List<StatInterval> intervals = [];
-  List<int> observed = [];
-  List<double> ithCalcValues = [];
+  double _expected;
+  List<StatInterval> _intervals = [];
+  List<int> _observed = [];
+  List<double> _ithCalcValues = [];
+  double _chiSquareCalc;
 
-  CSCalculator({this.numbers, this.divFactor, this.intervalWidth}) {
-    largestNumber = Utility.findLargest(numbers);
-    smallestNumber = Utility.findSmallest(numbers);
+  double get expected => _expected;
+  List<int> get observed => _observed;
+  List<double> get ithCalcValues => _ithCalcValues;
+  double get chiSquareCalc => _chiSquareCalc;
 
-    intervals = Utility.createIntervals(
-        smallestNumber, largestNumber, intervalWidth, divFactor);
-    _populateIntervals();
-
-    int intervalNum = intervals.length == 0 ? 1 : intervals.length;
-    expected = Utility.setPrecisionTo4(numbers.length / intervalNum);
+  // Return string representation of interval
+  List<String> get intervals {
+    List<String> intervalsStr = List.generate(
+        _intervals.length, (int index) => _intervals[index].toString());
+    return intervalsStr;
   }
 
-  void _populateIntervals() {
-    observed = List.generate(
-        intervals.length, (int index) => _getObservedCount(intervals[index]));
+  CSCalculator({this.numbers, this.divFactor, this.intervalWidth}) {
+    double largestNumber = Utility.findLargest(numbers);
+    double smallestNumber = Utility.findSmallest(numbers);
+
+    _intervals = Utility.createIntervals(
+        smallestNumber, largestNumber, intervalWidth, divFactor);
+    
+    _calculateObserved();
+    _expected = Utility.setPrecisionTo4(numbers.length / _intervals.length);
+    _calculateChiSquare();
+  }
+
+  void _calculateObserved() {
+    _observed = List.generate(
+        _intervals.length, (int index) => _getObservedCount(_intervals[index]));
   }
 
   int _getObservedCount(StatInterval interval) {
@@ -38,16 +49,14 @@ class CSCalculator {
     return count;
   }
 
-  double calculateChiSquare() {
-    double chiSquareCalc = 0.0;
-    for(int i = 0; i < intervals.length; ++i){
-      double diff = observed[i] - expected;
+  void _calculateChiSquare() {
+    _chiSquareCalc = 0.0;
+    for (int i = 0; i < _intervals.length; ++i) {
+      double diff = _observed[i] - _expected;
       double diffSquared = diff * diff;
-      double ithCalcValue = Utility.setPrecisionTo4(diffSquared / expected);
-      ithCalcValues.add(ithCalcValue);
-      chiSquareCalc += ithCalcValue;
+      double ithCalcValue = Utility.setPrecisionTo4(diffSquared / _expected);
+      _ithCalcValues.add(ithCalcValue);
+      _chiSquareCalc += ithCalcValue;
     }
-
-    return chiSquareCalc;
   }
 }

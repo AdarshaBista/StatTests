@@ -1,33 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/stat_interval.dart';
-import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/chi_square_test/cs_calculator.dart';
-import 'package:stat_tests/widgets/table_column.dart';
 
 class CSResultsScreen extends StatelessWidget {
   final CSCalculator calculator;
 
   CSResultsScreen({this.calculator});
 
-  List<String> _getIntervalList() {
-    List<StatInterval> intervals = calculator.intervals;
-    List<String> observedStrList = List.generate(
-        intervals.length, (int index) => intervals[index].toString());
-    return observedStrList;
-  }
-
   Widget _buildTable() => SizedBox(
-        height: (calculator.intervals.length + 2).toDouble() * 30.0,
+        height: 50 + (calculator.intervals.length).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          physics: ClampingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           children: <Widget>[
             TableColumn(
               header: "Intervals",
-              values: _getIntervalList(),
+              values: calculator.intervals,
             ),
             TableColumn(
               header: "Observed",
@@ -47,8 +38,7 @@ class CSResultsScreen extends StatelessWidget {
             value: "Expected = ${calculator.expected}",
           ),
           SingleValueCard(
-            value:
-                "Chi Square = ${Utility.setPrecisionTo4(calculator.calculateChiSquare())}",
+            value: "Chi Square = ${calculator.chiSquareCalc}",
           ),
         ],
       );

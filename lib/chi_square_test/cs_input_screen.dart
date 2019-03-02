@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -19,7 +19,6 @@ class CSInputScreenState extends State<CSInputScreen> {
   TextEditingController _numbersFieldController;
   TextEditingController _divFactorFieldController;
   TextEditingController _intervalWidthFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -40,20 +39,20 @@ class CSInputScreenState extends State<CSInputScreen> {
 
   CSCalculator _getCalculator() {
     // Capture the string in text fields
-    String _numbersStr = _numbersFieldController.text.toString();
-    String _divFactorStr = _divFactorFieldController.text.toString();
-    String _intervalWidthStr = _intervalWidthFieldController.text.toString();
+    String numbersStr = _numbersFieldController.text.toString();
+    String divFactorStr = _divFactorFieldController.text.toString();
+    String intervalWidthStr = _intervalWidthFieldController.text.toString();
 
     // Convert the string to required types
-    double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    List<double> _numbers = Utility.toDoubleList(_numbersStr, _divFactor);
-    double _intervalWidth = double.tryParse(_intervalWidthStr) ?? 0.0;
+    double divFactor = double.tryParse(divFactorStr) ?? 1.0;
+    double intervalWidth = double.tryParse(intervalWidthStr) ?? 1.0;
+    List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
 
     // Create a chi square test calculator
     return CSCalculator(
-      numbers: _numbers,
-      divFactor: _divFactor,
-      intervalWidth: _intervalWidth,
+      numbers: numbers,
+      divFactor: divFactor,
+      intervalWidth: intervalWidth,
     );
   }
 
@@ -125,7 +124,7 @@ class CSInputScreenState extends State<CSInputScreen> {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 30.0,
-            vertical: 10.0,
+            vertical: 20.0,
           ),
           children: <Widget>[
             _buildNumbersInputField(),
