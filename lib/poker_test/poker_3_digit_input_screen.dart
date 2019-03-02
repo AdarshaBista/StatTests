@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -18,7 +18,6 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
   TextEditingController _allSameFieldController;
   TextEditingController _allDiffFieldController;
   TextEditingController _onePairFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -39,20 +38,20 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
 
   Poker3DigitCalculator _getCalculator() {
     // Capture the string in text fields
-    String _allSameStr = _allSameFieldController.text.toString();
-    String _allDiffStr = _allDiffFieldController.text.toString();
-    String _onePairStr = _onePairFieldController.text.toString();
+    String allSameStr = _allSameFieldController.text.toString();
+    String allDiffStr = _allDiffFieldController.text.toString();
+    String onePairStr = _onePairFieldController.text.toString();
 
     // Convert the string to required types
-    int _allSame = int.tryParse(_allSameStr) ?? 0;
-    int _allDiff = int.tryParse(_allDiffStr) ?? 0;
-    int _onePair = int.tryParse(_onePairStr) ?? 0;
+    int allSame = int.tryParse(allSameStr) ?? 0;
+    int allDiff = int.tryParse(allDiffStr) ?? 0;
+    int onePair = int.tryParse(onePairStr) ?? 0;
 
-    // Create a poker test calculator
+    // Create a 3-digit poker test calculator
     return Poker3DigitCalculator(
-      allSame: _allSame,
-      allDiff: _allDiff,
-      onePair: _onePair,
+      allSame: allSame,
+      allDiff: allDiff,
+      onePair: onePair,
     );
   }
 
@@ -122,7 +121,7 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 30.0,
-            vertical: 10.0,
+            vertical: 20.0,
           ),
           children: <Widget>[
             _buildAllSameInputField(),

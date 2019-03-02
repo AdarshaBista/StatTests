@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
-import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/poker_test/poker_calculator.dart';
 
 class PokerResultsScreen extends StatelessWidget {
   final PokerCalculator calculator;
   final int combinations;
-  final List<String> titles = ["All Same", "All Different", "1 Pair"];
+  final List<String> _titles = ["All Same", "All Different", "1 Pair"];
 
   PokerResultsScreen({this.calculator, this.combinations});
 
   Widget _buildTable() => SizedBox(
-        height: (combinations + 2) * 30.0,
+        height: 50 + combinations * 30.0,
         child: ListView(
           shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             TableColumn(
               header: "Combinations",
-              values: titles,
+              values: _titles,
             ),
             TableColumn(
               header: "Observed",
@@ -31,7 +31,7 @@ class PokerResultsScreen extends StatelessWidget {
               values: calculator.expectedFreqs,
             ),
             TableColumn(
-              header: "(O - E)**2 / E",
+              header: "(O-E)^2 / E",
               values: calculator.ithCalcValues,
             ),
           ],
@@ -66,19 +66,23 @@ class PokerResultsScreen extends StatelessWidget {
 
 class Poker3DigitResultsScreen extends PokerResultsScreen {
   final Poker3DigitCalculator calculator;
-  static const int COMBINATIONS = 3;
 
   Poker3DigitResultsScreen({this.calculator})
-      : super(calculator: calculator, combinations: COMBINATIONS);
+      : super(
+          calculator: calculator,
+          combinations: Poker3DigitCalculator.NUM_OF_COMBINATIONS,
+        );
 }
 
 class Poker4DigitResultsScreen extends PokerResultsScreen {
   final Poker4DigitCalculator calculator;
-  static const int COMBINATIONS = 5;
 
   Poker4DigitResultsScreen({this.calculator})
-      : super(calculator: calculator, combinations: COMBINATIONS) {
-    super.titles.add("2 pair");
-    super.titles.add("3 Same");
+      : super(
+          calculator: calculator,
+          combinations: Poker4DigitCalculator.NUM_OF_COMBINATIONS,
+        ) {
+    super._titles.add("2 pair");
+    super._titles.add("3 Same");
   }
 }

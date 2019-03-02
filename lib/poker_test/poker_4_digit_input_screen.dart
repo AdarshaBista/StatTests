@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -20,7 +20,6 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
   TextEditingController _onePairFieldController;
   TextEditingController _twoPairFieldController;
   TextEditingController _threeSameFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -45,26 +44,26 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
 
   Poker4DigitCalculator _getCalculator() {
     // Capture the string in text fields
-    String _allSameStr = _allSameFieldController.text.toString();
-    String _allDiffStr = _allDiffFieldController.text.toString();
-    String _onePairStr = _onePairFieldController.text.toString();
-    String _twoPairStr = _twoPairFieldController.text.toString();
-    String _threeSameStr = _threeSameFieldController.text.toString();
+    String allSameStr = _allSameFieldController.text.toString();
+    String allDiffStr = _allDiffFieldController.text.toString();
+    String onePairStr = _onePairFieldController.text.toString();
+    String twoPairStr = _twoPairFieldController.text.toString();
+    String threeSameStr = _threeSameFieldController.text.toString();
 
     // Convert the string to required types
-    int _allSame = int.tryParse(_allSameStr) ?? 0;
-    int _allDiff = int.tryParse(_allDiffStr) ?? 0;
-    int _onePair = int.tryParse(_onePairStr) ?? 0;
-    int _twoPair = int.tryParse(_twoPairStr) ?? 0;
-    int _threeSame = int.tryParse(_threeSameStr) ?? 0;
+    int allSame = int.tryParse(allSameStr) ?? 0;
+    int allDiff = int.tryParse(allDiffStr) ?? 0;
+    int onePair = int.tryParse(onePairStr) ?? 0;
+    int twoPair = int.tryParse(twoPairStr) ?? 0;
+    int threeSame = int.tryParse(threeSameStr) ?? 0;
 
-    // Create a poker test calculator
+    // Create a 4-digit poker test calculator
     return Poker4DigitCalculator(
-      allSame: _allSame,
-      allDiff: _allDiff,
-      onePair: _onePair,
-      twoPair: _twoPair,
-      threeSame: _threeSame,
+      allSame: allSame,
+      allDiff: allDiff,
+      onePair: onePair,
+      twoPair: twoPair,
+      threeSame: threeSame,
     );
   }
 
@@ -154,14 +153,14 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 30.0,
-            vertical: 10.0,
+            vertical: 20.0,
           ),
           children: <Widget>[
             _buildAllSameInputField(),
             _buildAllDifferentInputField(),
             _build1PairInputField(),
-            _build3SameInputField(),
             _build2PairInputField(),
+            _build3SameInputField(),
             _buildCalculateButton(),
           ],
         ),

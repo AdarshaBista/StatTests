@@ -62,7 +62,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(
           horizontal: 30.0,
-          vertical: 10.0,
+          vertical: 20.0,
         ),
         children: <Widget>[
           _build3DigitButton(),
