@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:stat_tests/utils/stat_interval.dart';
 
 class Utility {
-  // Converts string to list of doubles
   static List<double> toDoubleList(String numbersStr,
       [double divFactor = 1.0]) {
     // Convert str to list of substring
@@ -11,7 +10,7 @@ class Utility {
     // Convert each substring to double
     List<double> numbers = [];
     numbersStrList.forEach((str) {
-      double number = (double.tryParse(str) ?? 0.0) / divFactor;
+      double number = (double.tryParse(str) ?? -1.0) / divFactor;
       numbers.add(number);
     });
 
@@ -31,13 +30,17 @@ class Utility {
 
     // Add the first interval
     intervals.add(StatInterval(
-        setPrecisionTo2(from), setPrecisionTo2(from + width - offset)));
+      start: setPrecisionTo2(from),
+      end: setPrecisionTo2(from + width - offset),
+    ));
 
     // Add the rest
-    for (int i = 1; intervals[i - 1].end < to; i++) {
+    for (int i = 1; intervals[i - 1].end < to; ++i) {
       double prevIntervalEnd = intervals[i - 1].end;
-      intervals.add(StatInterval(setPrecisionTo2(prevIntervalEnd + offset),
-          setPrecisionTo2(prevIntervalEnd + width)));
+      intervals.add(StatInterval(
+        start: setPrecisionTo2(prevIntervalEnd + offset),
+        end: setPrecisionTo2(prevIntervalEnd + width),
+      ));
     }
 
     return intervals;
@@ -58,26 +61,26 @@ class Utility {
     return setPrecision(number, 2);
   }
 
-  // Find largest number
+  // Find largest number in a list
   static num findLargest(List<num> list) {
     return list.reduce(max);
   }
 
-  // Find smallest number
+  // Find smallest number in a list
   static num findSmallest(List<num> list) {
     return list.reduce(min);
-  }
-
-  // Check if each string in a list of string is numeric
-  static bool isListNumeric(List<String> list) {
-    for (String str in list) {
-      if (double.tryParse(str) == null) return false;
-    }
-    return true;
   }
 
   // Check if a string is numeric
   static bool isStrNumeric(String str) {
     return num.tryParse(str) != null;
+  }
+
+  // Check if each string in a list of strings is numeric
+  static bool isListNumeric(List<String> list) {
+    for (String str in list) {
+      if (!isStrNumeric(str)) return false;
+    }
+    return true;
   }
 }

@@ -1,47 +1,49 @@
 import 'package:stat_tests/utils/utility.dart';
 
 class InputValidators {
-  static final String emptyError = "Cannot be empty";
-  static final String notNumericError = "Should contain a number";
-  static final String negativeError = "Should be zero or positive";
-  static final String zeroError = "Should be non-zero";
-  static final String nonPositiveError = "Should be positive and non-zero";
-  static final String intError = "Should be an integer";
+  static const String FIELD_EMPTY_ERROR = "Cannot be empty";
+  static const String NON_NUMERIC_LIST_ERROR = "Should contain only numbers";
+  static const String NON_NUMERIC_VALUE_ERROR = "Should contain a number";
+  static const String NEGATIVE_VALUE_ERROR = "Should be zero or positive";
+  static const String ZERO_VALUE_ERROR = "Should be non-zero";
+  static const String NON_INTEGER_ERROR = "Should be an integer";
+  static const String NON_POSITIVE_VALUE_ERROR =
+      "Should be positive and non-zero";
 
   static String validateNumbersField(String val) {
-    if (val.isEmpty) return emptyError;
+    if (val.isEmpty) return FIELD_EMPTY_ERROR;
     if (!Utility.isListNumeric(Utility.convertStrToList(val)))
-      return "Should contain only numbers";
-    return null;
-  }
-
-  static String validateNonZeroField(String val) {
-    if (val.isEmpty) return emptyError;
-    if (!Utility.isStrNumeric(val)) return notNumericError;
-    if (num.tryParse(val) == 0) return zeroError;
-    return null;
-  }
-
-  static String validateNonZeroPositiveField(String val) {
-    if (val.isEmpty) return emptyError;
-    if (!Utility.isStrNumeric(val)) return notNumericError;
-    if (num.tryParse(val) <= 0) return nonPositiveError;
-    return null;
-  }
-
-  static String validateNonZeroPositiveIntField(String val) {
-    if (val.isEmpty) return emptyError;
-    if (!Utility.isStrNumeric(val)) return notNumericError;
-    if (num.tryParse(val) <= 0) return nonPositiveError;
-    if (!(num.tryParse(val) is int)) return intError;
+      return NON_NUMERIC_LIST_ERROR;
     return null;
   }
 
   static String validatePositiveField(String val) {
-    if (val.isEmpty) return emptyError;
-    if (!Utility.isStrNumeric(val)) return notNumericError;
-    if (num.tryParse(val) < 0) return negativeError;
-    if (!(num.tryParse(val) is int)) return intError;
+    if (val.isEmpty) return FIELD_EMPTY_ERROR;
+    if (!Utility.isStrNumeric(val)) return NON_NUMERIC_VALUE_ERROR;
+    if (num.tryParse(val) < 0) return NEGATIVE_VALUE_ERROR;
+    if (!(num.tryParse(val) is int)) return NON_INTEGER_ERROR;
+    return null;
+  }
+
+  static String validateNonZeroField(String val) {
+    if (val.isEmpty) return FIELD_EMPTY_ERROR;
+    if (!Utility.isStrNumeric(val)) return NON_NUMERIC_VALUE_ERROR;
+    if (num.tryParse(val) == 0) return ZERO_VALUE_ERROR;
+    return null;
+  }
+
+  static String validateNonZeroPositiveField(String val) {
+    if (val.isEmpty) return FIELD_EMPTY_ERROR;
+    if (!Utility.isStrNumeric(val)) return NON_NUMERIC_VALUE_ERROR;
+    if (num.tryParse(val) <= 0) return NON_POSITIVE_VALUE_ERROR;
+    return null;
+  }
+
+  static String validateNonZeroPositiveIntField(String val) {
+    if (val.isEmpty) return FIELD_EMPTY_ERROR;
+    if (!Utility.isStrNumeric(val)) return NON_NUMERIC_VALUE_ERROR;
+    if (num.tryParse(val) <= 0) return NON_POSITIVE_VALUE_ERROR;
+    if (!(num.tryParse(val) is int)) return NON_INTEGER_ERROR;
     return null;
   }
 }
