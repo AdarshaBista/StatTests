@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/input_validators.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/utility.dart';
+import 'package:stat_tests/utils/page_transition.dart';
+import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
@@ -18,7 +18,6 @@ class KSInputScreen extends StatefulWidget {
 class KSInputScreenState extends State<KSInputScreen> {
   TextEditingController _numbersFieldController;
   TextEditingController _divFactorFieldController;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -37,17 +36,17 @@ class KSInputScreenState extends State<KSInputScreen> {
 
   KSCalculator _getCalculator() {
     // Capture the string in text fields
-    String _numbersStr = _numbersFieldController.text.toString();
-    String _divFactorStr = _divFactorFieldController.text.toString();
+    String numbersStr = _numbersFieldController.text.toString();
+    String divFactorStr = _divFactorFieldController.text.toString();
 
     // Convert the string to required types
-    double _divFactor = double.tryParse(_divFactorStr) ?? 1.0;
-    List<double> _numbers = Utility.toDoubleList(_numbersStr, _divFactor);
+    double divFactor = double.tryParse(divFactorStr) ?? 1.0;
+    List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
 
-    // Create a chi square test calculator
+    // Create a KS test calculator
     return KSCalculator(
-      numbers: _numbers,
-      divFactor: _divFactor,
+      numbers: numbers,
+      divFactor: divFactor,
     );
   }
 
@@ -108,7 +107,7 @@ class KSInputScreenState extends State<KSInputScreen> {
           physics: BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 30.0,
-            vertical: 10.0,
+            vertical: 20.0,
           ),
           children: <Widget>[
             _buildNumbersInputField(),

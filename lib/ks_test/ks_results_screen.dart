@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/widgets/table_column.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/single_value_card.dart';
 import 'package:stat_tests/ks_test/ks_calculator.dart';
-import 'package:stat_tests/widgets/table_column.dart';
 
 class KSResultsScreen extends StatelessWidget {
   final KSCalculator calculator;
@@ -10,10 +10,10 @@ class KSResultsScreen extends StatelessWidget {
   KSResultsScreen({this.calculator});
 
   Widget _buildTable() => SizedBox(
-        height: (calculator.numbers.length + 2).toDouble() * 30.0,
+        height: 50 + (calculator.numbers.length).toDouble() * 30.0,
         child: ListView(
           shrinkWrap: true,
-          physics: ClampingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             TableColumn(

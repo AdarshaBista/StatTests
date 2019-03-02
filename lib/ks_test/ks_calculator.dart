@@ -1,16 +1,22 @@
 import 'package:stat_tests/utils/utility.dart';
 
 class KSCalculator {
+  List<double> numbers;
   final double divFactor;
 
-  List<double> numbers;
-  List<double> iOverN = [];
-  List<double> iOverNMinusRi = [];
-  List<double> riMinusIMinusOneOverN = [];
+  List<double> _iOverN = [];
+  List<double> _iOverNMinusRi = [];
+  List<double> _riMinusIMinusOneOverN = [];
+  double _dPlus;
+  double _dMinus;
+  double _d;
 
-  double dPlus;
-  double dMinus;
-  double d;
+  List<double> get iOverN => _iOverN;
+  List<double> get iOverNMinusRi => _iOverNMinusRi;
+  List<double> get riMinusIMinusOneOverN => _riMinusIMinusOneOverN;
+  double get dPlus => _dPlus;
+  double get dMinus => _dMinus;
+  double get d => _d;
 
   KSCalculator({this.numbers, this.divFactor}) {
     numbers.sort();
@@ -24,29 +30,29 @@ class KSCalculator {
     int n = numbers.length;
     for (int i = 1; i <= n; ++i) {
       double value = i / n;
-      iOverN.add(Utility.setPrecisionTo4(value));
+      _iOverN.add(Utility.setPrecisionTo4(value));
     }
   }
 
   void _calculateIOverNMinusRi() {
     for (int i = 0; i < numbers.length; ++i) {
-      double value = iOverN[i] - numbers[i];
-      iOverNMinusRi.add(Utility.setPrecisionTo4(value));
+      double value = _iOverN[i] - numbers[i];
+      _iOverNMinusRi.add(Utility.setPrecisionTo4(value));
     }
   }
 
   void _calculaterRiMinusIMinusOneOverN() {
-    riMinusIMinusOneOverN.add(numbers[0]);
+    _riMinusIMinusOneOverN.add(numbers[0]);
 
     for (int i = 1; i < numbers.length; ++i) {
-      double value = numbers[i] - (iOverN[i - 1]);
-      riMinusIMinusOneOverN.add(Utility.setPrecisionTo4(value));
+      double value = numbers[i] - (_iOverN[i - 1]);
+      _riMinusIMinusOneOverN.add(Utility.setPrecisionTo4(value));
     }
   }
 
   void _calculateD() {
-    dPlus = Utility.findLargest(iOverNMinusRi);
-    dMinus = Utility.findLargest(riMinusIMinusOneOverN);
-    d = dPlus > dMinus ? dPlus : dMinus;
+    _dPlus = Utility.findLargest(_iOverNMinusRi);
+    _dMinus = Utility.findLargest(_riMinusIMinusOneOverN);
+    _d = _dPlus > _dMinus ? _dPlus : _dMinus;
   }
 }
