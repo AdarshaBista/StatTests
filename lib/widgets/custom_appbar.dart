@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends AppBar {
   CustomAppBar({BuildContext context, String title})
       : super(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           elevation: 0.0,
           title: Text(
             title,
