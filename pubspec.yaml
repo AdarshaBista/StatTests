@@ -1,5 +1,5 @@
 name: stat_tests
-description: A new Flutter project.
+description: App to compute statistical tests.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -62,10 +62,10 @@ flutter:
   fonts:
     - family: ProductSans
       fonts:
-        - asset: assets/fonts/Product Sans Bold Italic.ttf
         - asset: assets/fonts/Product Sans Italic.ttf
         - asset: assets/fonts/Product Sans Bold.ttf
         - asset: assets/fonts/Product Sans Regular.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
