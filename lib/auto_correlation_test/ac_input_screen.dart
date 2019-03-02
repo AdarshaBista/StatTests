@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stat_tests/utils/utility.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
+import 'package:stat_tests/widgets/page_transition.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/auto_correlation_test/ac_calculator.dart';
 import 'package:stat_tests/auto_correlation_test/ac_results_screen.dart';

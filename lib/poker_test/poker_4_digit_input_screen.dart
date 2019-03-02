@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stat_tests/utils/page_transition.dart';
 import 'package:stat_tests/utils/input_validators.dart';
 import 'package:stat_tests/widgets/custom_appbar.dart';
 import 'package:stat_tests/widgets/custom_button.dart';
+import 'package:stat_tests/widgets/page_transition.dart';
 import 'package:stat_tests/widgets/custom_form_field.dart';
 import 'package:stat_tests/poker_test/poker_calculator.dart';
 import 'package:stat_tests/poker_test/poker_results_screen.dart';
