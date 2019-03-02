@@ -15,12 +15,11 @@ class TestListScreen extends StatefulWidget {
 class TestListScreenState extends State<TestListScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  int currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(
+    _tabController = TabController(
       length: 5,
       vsync: this,
     );
