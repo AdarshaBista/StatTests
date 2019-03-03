@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stat_tests/info_screen.dart';
 import 'package:stat_tests/chi_square_test/cs_input_screen.dart';
 import 'package:stat_tests/ks_test/ks_input_screen.dart';
 import 'package:stat_tests/gap_test/gap_input_screen.dart';
@@ -34,6 +35,27 @@ class TestListScreenState extends State<TestListScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text(
+          "Choose a Test",
+          style: Theme.of(context).textTheme.title,
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InfoScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       bottomNavigationBar: Material(
         color: Theme.of(context).primaryColor,
         child: TabBar(
