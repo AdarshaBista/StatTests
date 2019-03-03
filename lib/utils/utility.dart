@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:stat_tests/utils/stat_interval.dart';
 
 class Utility {
   static List<double> toDoubleList(String numbersStr,
@@ -20,30 +19,6 @@ class Utility {
   static List<String> convertStrToList(String numbersStr) {
     numbersStr = numbersStr.trim();
     return numbersStr.split(RegExp('\\s+'));
-  }
-
-  // Create intervals with given width
-  static List<StatInterval> createIntervals(
-      double from, double to, double width, double divFactor) {
-    List<StatInterval> intervals = List<StatInterval>();
-    double offset = 1.0 / (divFactor * 10.0);
-
-    // Add the first interval
-    intervals.add(StatInterval(
-      start: setPrecisionTo2(from),
-      end: setPrecisionTo2(from + width - offset),
-    ));
-
-    // Add the rest
-    for (int i = 1; intervals[i - 1].end < to; ++i) {
-      double prevIntervalEnd = intervals[i - 1].end;
-      intervals.add(StatInterval(
-        start: setPrecisionTo2(prevIntervalEnd + offset),
-        end: setPrecisionTo2(prevIntervalEnd + width),
-      ));
-    }
-
-    return intervals;
   }
 
   // Round off double to given digits

@@ -9,7 +9,7 @@ class GapCalculator {
 
   List<double> _symbols;
   Map<double, List<int>> _gapMap = {};
-  List<StatInterval> _intervals = [];
+  List<StatInterval<int>> _intervals = [];
   List<int> _frequencies = [];
   List<double> _relativeFreqs = [];
   List<double> _cumulativeFreqs = [];
@@ -78,14 +78,14 @@ class GapCalculator {
     int largestNumber = Utility.findLargestInt(flattenedMapValues);
     int smallestNumber = Utility.findSmallestInt(flattenedMapValues);
 
-    _intervals = createIntervals(smallestNumber, largestNumber, gapLength);
+    _intervals = _createIntervals(smallestNumber, largestNumber, gapLength);
   }
 
-  List<StatInterval> createIntervals(int from, int to, int width) {
+  List<StatInterval<int>> _createIntervals(int from, int to, int width) {
     List<StatInterval<int>> intervals = List<StatInterval<int>>();
 
     // Add the first interval
-    intervals.add(StatInterval(
+    intervals.add(StatInterval<int>(
       start: from,
       end: from + width,
     ));
@@ -107,7 +107,7 @@ class GapCalculator {
         (int index) => _getFrequencyCount(_intervals[index]));
   }
 
-  int _getFrequencyCount(StatInterval interval) {
+  int _getFrequencyCount(StatInterval<int> interval) {
     int count = 0;
     List<int> flattenedMapValues = _gapMap.values.expand((i) => i).toList();
 

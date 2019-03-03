@@ -7,7 +7,7 @@ class CSCalculator {
   final double intervalWidth;
 
   double _expected;
-  List<StatInterval> _intervals = [];
+  List<StatInterval<double>> _intervals = [];
   List<int> _observed = [];
   List<double> _ithCalcValues = [];
   double _chiSquareCalc;
@@ -35,8 +35,31 @@ class CSCalculator {
     double largestNumber = Utility.findLargest(numbers);
     double smallestNumber = Utility.findSmallest(numbers);
 
-    _intervals = Utility.createIntervals(
+    _intervals = _createIntervals(
         smallestNumber, largestNumber, intervalWidth, divFactor);
+  }
+
+  List<StatInterval<double>> _createIntervals(
+      double from, double to, double width, double divFactor) {
+    List<StatInterval<double>> intervals = List<StatInterval<double>>();
+    double offset = 1.0 / (divFactor * 10.0);
+
+    // Add the first interval
+    intervals.add(StatInterval<double>(
+      start: Utility.setPrecisionTo2(from),
+      end: Utility.setPrecisionTo2(from + width - offset),
+    ));
+
+    // Add the rest
+    for (int i = 1; intervals[i - 1].end < to; ++i) {
+      double prevIntervalEnd = intervals[i - 1].end;
+      intervals.add(StatInterval<double>(
+        start: Utility.setPrecisionTo2(prevIntervalEnd + offset),
+        end: Utility.setPrecisionTo2(prevIntervalEnd + width),
+      ));
+    }
+
+    return intervals;
   }
 
   void _calculateObserved() {
@@ -44,7 +67,7 @@ class CSCalculator {
         _intervals.length, (int index) => _getObservedCount(_intervals[index]));
   }
 
-  int _getObservedCount(StatInterval interval) {
+  int _getObservedCount(StatInterval<double> interval) {
     int count = 0;
     numbers.forEach((number) {
       if (interval.start <= number && interval.end >= number) count++;
