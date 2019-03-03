@@ -71,6 +71,16 @@ class Utility {
     return list.reduce(min);
   }
 
+  // Find largest number in a list of ints
+  static int findLargestInt(List<int> list) {
+    return list.reduce(max);
+  }
+
+  // Find smallest number in a list of ints
+  static int findSmallestInt(List<int> list) {
+    return list.reduce(min);
+  }
+
   // Check if a string is numeric
   static bool isStrNumeric(String str) {
     return num.tryParse(str) != null;

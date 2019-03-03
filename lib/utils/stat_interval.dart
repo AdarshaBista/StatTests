@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-class StatInterval {
-  final double start;
-  final double end;
+class StatInterval<T> {
+  final T start;
+  final T end;
 
   StatInterval({
     @required this.start,

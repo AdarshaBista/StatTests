@@ -48,7 +48,7 @@ class GapInputScreenState extends State<GapInputScreen> {
 
     // Convert the string to required types
     double divFactor = double.tryParse(divFactorStr) ?? 1.0;
-    double gapLength = double.tryParse(gapLengthStr) ?? 1.0;
+    int gapLength = int.tryParse(gapLengthStr) ?? 1;
     List<double> numbers = Utility.toDoubleList(numbersStr);
 
     // Create a gap test calculator
@@ -100,7 +100,7 @@ class GapInputScreenState extends State<GapInputScreen> {
           context: context,
           controller: _gapLengthFieldController,
           hintText: "Enter gap length",
-          validator: (val) => InputValidators.validateNonZeroPositiveField(val),
+          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 

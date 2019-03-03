@@ -5,7 +5,7 @@ import 'package:stat_tests/utils/stat_interval.dart';
 class GapCalculator {
   final double divFactor;
   final List<double> numbers;
-  final double gapLength;
+  final int gapLength;
 
   List<double> _symbols;
   Map<double, List<int>> _gapMap = {};
@@ -74,15 +74,32 @@ class GapCalculator {
   }
 
   void _populateIntervals() {
-    List<int> flattenedMapValuesInt = _gapMap.values.expand((i) => i).toList();
-    List<double> flattenedMapValues = List.generate(
-        flattenedMapValuesInt.length,
-        (int index) => flattenedMapValuesInt[index].toDouble());
-    double largestNumber = Utility.findLargest(flattenedMapValues);
-    double smallestNumber = Utility.findSmallest(flattenedMapValues);
+    List<int> flattenedMapValues = _gapMap.values.expand((i) => i).toList();
+    int largestNumber = Utility.findLargestInt(flattenedMapValues);
+    int smallestNumber = Utility.findSmallestInt(flattenedMapValues);
 
-    _intervals = Utility.createIntervals(
-        smallestNumber, largestNumber, gapLength, divFactor);
+    _intervals = createIntervals(smallestNumber, largestNumber, gapLength);
+  }
+
+  List<StatInterval> createIntervals(int from, int to, int width) {
+    List<StatInterval<int>> intervals = List<StatInterval<int>>();
+
+    // Add the first interval
+    intervals.add(StatInterval(
+      start: from,
+      end: from + width,
+    ));
+
+    // Add the rest
+    for (int i = 1; intervals[i - 1].end < to; ++i) {
+      int prevIntervalEnd = intervals[i - 1].end.toInt();
+      intervals.add(StatInterval<int>(
+        start: prevIntervalEnd + 1,
+        end: prevIntervalEnd + 1 + width,
+      ));
+    }
+
+    return intervals;
   }
 
   void _calculateFreqs() {
