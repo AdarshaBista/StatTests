@@ -49,7 +49,7 @@ class ACInputScreenState extends State<ACInputScreen> {
 
     // Convert the string to required types
     double divFactor = double.tryParse(divFactorStr) ?? 1.0;
-    int ithNumber = (int.tryParse(ithNumberStr) - 1) ?? 0;
+    int ithNumber = (int.tryParse(ithNumberStr)) ?? 1;
     int lag = int.tryParse(lagStr) ?? 2;
     List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
 

@@ -28,6 +28,10 @@ class ACCalculator {
 
   void _calculateCapitalM() {
     _capitalM = (numbers.length - lag - ithNumber) ~/ lag;
+    print(numbers.length);
+    print(lag);
+    print(ithNumber);
+    print(_capitalM);
   }
 
   void _calculateSigmaRho() {
@@ -39,13 +43,14 @@ class ACCalculator {
   void _calculateRho() {
     double oneOverMPlusOne = 1.0 / (_capitalM + 1.0);
 
-    _sum = 0.0;
+    double sum = 0.0;
+    int i = ithNumber - 1;
     for (int k = 0; k <= _capitalM; ++k) {
-      double firstNum = numbers[ithNumber + k * lag];
-      double secondNum = numbers[ithNumber + (k + 1) * lag];
-
-      _sum += Utility.setPrecisionTo4(firstNum * secondNum);
+      double firstNum = numbers[i + k * lag];
+      double secondNum = numbers[i + (k + 1) * lag];
+      sum += firstNum * secondNum;
     }
+    _sum = Utility.setPrecisionTo4(sum);
     _rho = Utility.setPrecisionTo4(oneOverMPlusOne * _sum - 0.25);
   }
 
