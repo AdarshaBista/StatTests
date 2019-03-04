@@ -47,16 +47,16 @@ class CSCalculator {
 
     // Add the first interval
     intervals.add(StatInterval<double>(
-      start: Utility.setPrecisionTo4(from),
-      end: Utility.setPrecisionTo4(from + width - offset),
+      start: Utility.setPrecision(from, numOfDigits),
+      end: Utility.setPrecision(from + width - offset, numOfDigits),
     ));
 
     // Add the rest
     for (int i = 1; intervals[i - 1].end < to; ++i) {
       double prevIntervalEnd = intervals[i - 1].end;
       intervals.add(StatInterval<double>(
-        start: Utility.setPrecisionTo4(prevIntervalEnd + offset),
-        end: Utility.setPrecisionTo4(prevIntervalEnd + width),
+        start: Utility.setPrecision(prevIntervalEnd + offset, numOfDigits),
+        end: Utility.setPrecision(prevIntervalEnd + width, numOfDigits),
       ));
     }
 
