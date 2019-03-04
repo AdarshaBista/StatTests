@@ -19,6 +19,7 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
   TextEditingController _allDiffFieldController;
   TextEditingController _onePairFieldController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<int> _inputs = [];
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
     super.dispose();
   }
 
-  Poker3DigitCalculator _getCalculator() {
+  List<int> _prepareInputs() {
     // Capture the string in text fields
     String allSameStr = _allSameFieldController.text.toString();
     String allDiffStr = _allDiffFieldController.text.toString();
@@ -47,22 +48,23 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
     int allDiff = int.tryParse(allDiffStr) ?? 0;
     int onePair = int.tryParse(onePairStr) ?? 0;
 
+    return [allSame, allDiff, onePair];
+  }
+
+  Poker3DigitCalculator _getCalculator(List<int> inputs) {
     // Create a 3-digit poker test calculator
-    return Poker3DigitCalculator(
-      allSame: allSame,
-      allDiff: allDiff,
-      onePair: onePair,
-    );
+    return Poker3DigitCalculator(inputs);
   }
 
   void _onCalculateButtonPressed() {
+    _inputs = _prepareInputs();
     // Navigate to results page
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
         SlideUpTransition(
           widget: Poker3DigitResultsScreen(
-            calculator: _getCalculator(),
+            calculator: _getCalculator(_inputs),
           ),
         ),
       );
@@ -75,7 +77,8 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
           context: context,
           controller: _allSameFieldController,
           hintText: "All same",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -85,7 +88,8 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
           context: context,
           controller: _allDiffFieldController,
           hintText: "All different",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -95,7 +99,8 @@ class Poker3DigitInputScreenState extends State<Poker3DigitInputScreen> {
           context: context,
           controller: _onePairFieldController,
           hintText: "1 Pair",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 

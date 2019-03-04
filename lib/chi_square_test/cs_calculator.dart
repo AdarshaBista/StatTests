@@ -42,21 +42,22 @@ class CSCalculator {
   List<StatInterval<double>> _createIntervals(
       double from, double to, double width) {
     List<StatInterval<double>> intervals = List<StatInterval<double>>();
-    int numOfDigits = width >= 1 ? 1 : width.toString().length - 1;
+    int numOfDigits = width.toString().length - (width >= 1 ? 2 : 1);
     double offset = 1 / pow(10, numOfDigits);
+    int precision = numOfDigits > 4 ? numOfDigits : 4;
 
     // Add the first interval
     intervals.add(StatInterval<double>(
-      start: Utility.setPrecision(from, numOfDigits),
-      end: Utility.setPrecision(from + width - offset, numOfDigits),
+      start: Utility.setPrecision(from, precision),
+      end: Utility.setPrecision(from + width - offset, precision),
     ));
 
     // Add the rest
     for (int i = 1; intervals[i - 1].end < to; ++i) {
       double prevIntervalEnd = intervals[i - 1].end;
       intervals.add(StatInterval<double>(
-        start: Utility.setPrecision(prevIntervalEnd + offset, numOfDigits),
-        end: Utility.setPrecision(prevIntervalEnd + width, numOfDigits),
+        start: Utility.setPrecision(prevIntervalEnd + offset, precision),
+        end: Utility.setPrecision(prevIntervalEnd + width, precision),
       ));
     }
 

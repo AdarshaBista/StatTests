@@ -24,7 +24,7 @@ class SingleValueCard extends StatelessWidget {
           child: Center(
             child: Text(
               value,
-              overflow: TextOverflow.ellipsis,
+              overflow: TextOverflow.clip,
               style: Theme.of(context).textTheme.title,
             ),
           ),

@@ -23,6 +23,10 @@ class PokerResultsScreen extends StatelessWidget {
               values: _titles,
             ),
             TableColumn(
+              header: "Probabilities",
+              values: calculator.probabilities,
+            ),
+            TableColumn(
               header: "Observed",
               values: calculator.observedFreqs,
             ),

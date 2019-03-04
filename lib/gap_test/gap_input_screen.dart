@@ -49,7 +49,7 @@ class GapInputScreenState extends State<GapInputScreen> {
     // Convert the string to required types
     double divFactor = double.tryParse(divFactorStr) ?? 1.0;
     int gapLength = int.tryParse(gapLengthStr) ?? 1;
-    List<double> numbers = Utility.toDoubleList(numbersStr);
+    List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
 
     // Create a gap test calculator
     return GapCalculator(

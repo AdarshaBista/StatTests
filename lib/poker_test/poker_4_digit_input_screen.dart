@@ -21,6 +21,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
   TextEditingController _twoPairFieldController;
   TextEditingController _threeSameFieldController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<int> _inputs = [];
 
   @override
   void initState() {
@@ -42,7 +43,7 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
     super.dispose();
   }
 
-  Poker4DigitCalculator _getCalculator() {
+  List<int> _prepareInputs() {
     // Capture the string in text fields
     String allSameStr = _allSameFieldController.text.toString();
     String allDiffStr = _allDiffFieldController.text.toString();
@@ -57,24 +58,23 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
     int twoPair = int.tryParse(twoPairStr) ?? 0;
     int threeSame = int.tryParse(threeSameStr) ?? 0;
 
+    return [allSame, allDiff, onePair, twoPair, threeSame];
+  }
+
+  Poker4DigitCalculator _getCalculator(List<int> inputs) {
     // Create a 4-digit poker test calculator
-    return Poker4DigitCalculator(
-      allSame: allSame,
-      allDiff: allDiff,
-      onePair: onePair,
-      twoPair: twoPair,
-      threeSame: threeSame,
-    );
+    return Poker4DigitCalculator(inputs);
   }
 
   void _onCalculateButtonPressed() {
+    _inputs = _prepareInputs();
     // Navigate to results page
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
         SlideUpTransition(
           widget: Poker4DigitResultsScreen(
-            calculator: _getCalculator(),
+            calculator: _getCalculator(_inputs),
           ),
         ),
       );
@@ -87,7 +87,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _allSameFieldController,
           hintText: "All same",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -97,7 +98,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _allDiffFieldController,
           hintText: "All different",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -107,7 +109,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _onePairFieldController,
           hintText: "1 pair",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -117,7 +120,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _twoPairFieldController,
           hintText: "2 pair",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 
@@ -127,7 +131,8 @@ class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {
           context: context,
           controller: _threeSameFieldController,
           hintText: "3 same",
-          validator: (val) => InputValidators.validatePositiveField(val),
+          validator: (val) =>
+              InputValidators.validatePositiveIntField(val, _inputs),
         ),
       );
 

@@ -27,7 +27,7 @@ class GapResultCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Symbol: $symbol",
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.subhead,
               ),
             ),
             Divider(
@@ -49,7 +49,7 @@ class GapResultCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Length: $listLength",
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.subhead,
               ),
             ),
           ],

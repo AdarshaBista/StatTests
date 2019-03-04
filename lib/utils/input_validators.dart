@@ -7,6 +7,7 @@ class InputValidators {
   static const String NEGATIVE_VALUE_ERROR = "Should be zero or positive";
   static const String ZERO_VALUE_ERROR = "Should be non-zero";
   static const String NON_INTEGER_ERROR = "Should be an integer";
+  static const String NON_EMPTY_FIELD_ERROR = "One field should be non-zero";
   static const String RANGE_ERROR = "Should be smaller";
   static const String NON_POSITIVE_VALUE_ERROR =
       "Should be positive and non-zero";
@@ -18,11 +19,12 @@ class InputValidators {
     return null;
   }
 
-  static String validatePositiveField(String val) {
+  static String validatePositiveIntField(String val, List<int> inputs) {
     if (val.isEmpty) return FIELD_EMPTY_ERROR;
     if (!Utility.isStrNumeric(val)) return NON_NUMERIC_VALUE_ERROR;
     if (num.tryParse(val) < 0) return NEGATIVE_VALUE_ERROR;
     if (!(num.tryParse(val) is int)) return NON_INTEGER_ERROR;
+    if (inputs.reduce((a, b) => a + b) == 0) return NON_EMPTY_FIELD_ERROR;
     return null;
   }
 
