@@ -31,11 +31,6 @@ class Utility {
     return setPrecision(number, 4);
   }
 
-  // Round off double to 2 digits
-  static double setPrecisionTo2(double number) {
-    return setPrecision(number, 2);
-  }
-
   // Find largest number in a list
   static double findLargest(List<double> list) {
     return list.reduce(max);

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:stat_tests/utils/utility.dart';
 import 'package:stat_tests/utils/stat_interval.dart';
 
@@ -35,27 +36,27 @@ class CSCalculator {
     double largestNumber = Utility.findLargest(numbers);
     double smallestNumber = Utility.findSmallest(numbers);
 
-    _intervals = _createIntervals(
-        smallestNumber, largestNumber, intervalWidth, divFactor);
+    _intervals = _createIntervals(smallestNumber, largestNumber, intervalWidth);
   }
 
   List<StatInterval<double>> _createIntervals(
-      double from, double to, double width, double divFactor) {
+      double from, double to, double width) {
     List<StatInterval<double>> intervals = List<StatInterval<double>>();
-    double offset = 1.0 / (divFactor * 10.0);
+    int numOfDigits = width >= 1 ? 1 : width.toString().length - 1;
+    double offset = 1 / pow(10, numOfDigits);
 
     // Add the first interval
     intervals.add(StatInterval<double>(
-      start: Utility.setPrecisionTo2(from),
-      end: Utility.setPrecisionTo2(from + width - offset),
+      start: Utility.setPrecisionTo4(from),
+      end: Utility.setPrecisionTo4(from + width - offset),
     ));
 
     // Add the rest
     for (int i = 1; intervals[i - 1].end < to; ++i) {
       double prevIntervalEnd = intervals[i - 1].end;
       intervals.add(StatInterval<double>(
-        start: Utility.setPrecisionTo2(prevIntervalEnd + offset),
-        end: Utility.setPrecisionTo2(prevIntervalEnd + width),
+        start: Utility.setPrecisionTo4(prevIntervalEnd + offset),
+        end: Utility.setPrecisionTo4(prevIntervalEnd + width),
       ));
     }
 
