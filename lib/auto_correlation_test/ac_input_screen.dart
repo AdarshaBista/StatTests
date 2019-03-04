@@ -21,6 +21,9 @@ class ACInputScreenState extends State<ACInputScreen> {
   TextEditingController _ithNumberFieldController;
   TextEditingController _lagFieldController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  int _totalNumbers = 0;
+  int _ithNumber = 1;
+  int _lag = 0;
 
   @override
   void initState() {
@@ -40,7 +43,7 @@ class ACInputScreenState extends State<ACInputScreen> {
     super.dispose();
   }
 
-  ACCalculator _getCalculator() {
+  Map<String, dynamic> _prepareInput() {
     // Capture the string in text fields
     String numbersStr = _numbersFieldController.text.toString();
     String divFactorStr = _divFactorFieldController.text.toString();
@@ -52,24 +55,38 @@ class ACInputScreenState extends State<ACInputScreen> {
     int ithNumber = (int.tryParse(ithNumberStr)) ?? 1;
     int lag = int.tryParse(lagStr) ?? 2;
     List<double> numbers = Utility.toDoubleList(numbersStr, divFactor);
+    _totalNumbers = numbers.length;
 
+    return {
+      'numbers': numbers,
+      'divFactor': divFactor,
+      'ithNumber': ithNumber,
+      'lag': lag,
+    };
+  }
+
+  ACCalculator _getCalculator(Map<String, dynamic> inputs) {
     // Create a auto correlation test calculator
     return ACCalculator(
-      numbers: numbers,
-      divFactor: divFactor,
-      ithNumber: ithNumber,
-      lag: lag,
+      numbers: inputs['numbers'],
+      divFactor: inputs['divFactor'],
+      ithNumber: inputs['ithNumber'],
+      lag: inputs['lag'],
     );
   }
 
   void _onCalculateButtonPressed() {
+    Map<String, dynamic> inputs = _prepareInput();
+    _ithNumber = inputs['ithNumber'];
+    _lag = inputs['lag'];
+
     // Navigate to results page
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
         SlideUpTransition(
           widget: ACResultsScreen(
-            calculator: _getCalculator(),
+            calculator: _getCalculator(inputs),
           ),
         ),
       );
@@ -103,8 +120,8 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _ithNumberFieldController,
           hintText: "Enter ith number",
-          validator: (val) =>
-              InputValidators.validateNonZeroPositiveIntField(val),
+          validator: (val) => InputValidators.validateNonZeroPositiveIntField(
+              val, _totalNumbers - _lag),
         ),
       );
 
@@ -114,8 +131,8 @@ class ACInputScreenState extends State<ACInputScreen> {
           context: context,
           controller: _lagFieldController,
           hintText: "Enter lag",
-          validator: (val) =>
-              InputValidators.validateNonZeroPositiveIntField(val),
+          validator: (val) => InputValidators.validateNonZeroPositiveIntField(
+              val, _totalNumbers - _ithNumber),
         ),
       );
 

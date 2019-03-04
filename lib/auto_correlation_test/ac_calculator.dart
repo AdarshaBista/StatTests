@@ -28,10 +28,7 @@ class ACCalculator {
 
   void _calculateCapitalM() {
     _capitalM = (numbers.length - lag - ithNumber) ~/ lag;
-    print(numbers.length);
-    print(lag);
-    print(ithNumber);
-    print(_capitalM);
+    if (_capitalM < 0) _capitalM = 0;
   }
 
   void _calculateSigmaRho() {
@@ -45,10 +42,12 @@ class ACCalculator {
 
     double sum = 0.0;
     int i = ithNumber - 1;
-    for (int k = 0; k <= _capitalM; ++k) {
-      double firstNum = numbers[i + k * lag];
-      double secondNum = numbers[i + (k + 1) * lag];
-      sum += firstNum * secondNum;
+    if (_capitalM > 0) {
+      for (int k = 0; k <= _capitalM; ++k) {
+        double firstNum = numbers[i + k * lag];
+        double secondNum = numbers[i + (k + 1) * lag];
+        sum += firstNum * secondNum;
+      }
     }
     _sum = Utility.setPrecisionTo4(sum);
     _rho = Utility.setPrecisionTo4(oneOverMPlusOne * _sum - 0.25);

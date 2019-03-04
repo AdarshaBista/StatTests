@@ -42,7 +42,7 @@ class KSCalculator {
   }
 
   void _calculaterRiMinusIMinusOneOverN() {
-    _riMinusIMinusOneOverN.add(numbers[0]);
+    _riMinusIMinusOneOverN.add(Utility.setPrecisionTo4(numbers[0]));
 
     for (int i = 1; i < numbers.length; ++i) {
       double value = numbers[i] - (_iOverN[i - 1]);

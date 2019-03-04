@@ -10,7 +10,7 @@ class Utility {
     List<double> numbers = [];
     numbersStrList.forEach((str) {
       double number = (double.tryParse(str) ?? -1.0) / divFactor;
-      numbers.add(number);
+      numbers.add(setPrecision(number, 6));
     });
 
     return numbers;
