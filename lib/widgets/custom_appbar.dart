@@ -5,9 +5,12 @@ class CustomAppBar extends AppBar {
       : super(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
+          centerTitle: true,
           title: Text(
             title,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.title.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         );
 }
