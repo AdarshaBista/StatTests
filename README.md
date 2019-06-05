@@ -23,3 +23,7 @@ After installing the app, you will see a tabbed layout of the available tests. C
 - `Enter space separated Numbers` - Enter the random numbers to be tested in this field. Each number should be separated by a space.
 
 - `Enter division factor` - The division factor divides each number from the above input field. Let us consider the numbers `0.12 0.45 0.34 0.9 0.77`. Instead of typing the numbers as is, we type `12 45 34 90 77` in the numbers input field. Then we give `100` as division factor. Each number is then divided by `100` which is the same as typing `0.12 0.45 0.34 0.9 0.77`. This saves a lot of time when there are many numbers to be tested. The division factor can be an integer or a float and either positive or negative but not zero.
+
+## Screenshots
+
+<img height="480px" src="screenshots/1.png">
