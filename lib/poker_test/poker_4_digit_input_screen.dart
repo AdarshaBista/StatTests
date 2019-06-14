@@ -9,9 +9,7 @@ import 'package:stat_tests/poker_test/poker_results_screen.dart';
 
 class Poker4DigitInputScreen extends StatefulWidget {
   @override
-  Poker4DigitInputScreenState createState() {
-    return new Poker4DigitInputScreenState();
-  }
+  Poker4DigitInputScreenState createState() => Poker4DigitInputScreenState();
 }
 
 class Poker4DigitInputScreenState extends State<Poker4DigitInputScreen> {

@@ -33,8 +33,8 @@ class CSCalculator {
   }
 
   void _populateIntervals() {
-    double largestNumber = Utility.findLargest(numbers);
-    double smallestNumber = Utility.findSmallest(numbers);
+    double largestNumber = numbers.reduce(max);
+    double smallestNumber = numbers.reduce(min);
 
     _intervals = _createIntervals(smallestNumber, largestNumber, intervalWidth);
   }

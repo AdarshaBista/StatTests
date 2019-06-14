@@ -10,9 +10,7 @@ import 'package:stat_tests/ks_test/ks_results_screen.dart';
 
 class KSInputScreen extends StatefulWidget {
   @override
-  KSInputScreenState createState() {
-    return new KSInputScreenState();
-  }
+  KSInputScreenState createState() => KSInputScreenState();
 }
 
 class KSInputScreenState extends State<KSInputScreen> {
@@ -55,7 +53,7 @@ class KSInputScreenState extends State<KSInputScreen> {
     if (_formKey.currentState.validate()) {
       Navigator.push(
         context,
-       SlideUpTransition(
+        SlideUpTransition(
           widget: KSResultsScreen(
             calculator: _getCalculator(),
           ),

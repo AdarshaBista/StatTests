@@ -7,9 +7,7 @@ import 'package:stat_tests/poker_test/poker_digit_input_screen.dart';
 
 class TestListScreen extends StatefulWidget {
   @override
-  TestListScreenState createState() {
-    return new TestListScreenState();
-  }
+  TestListScreenState createState() => TestListScreenState();
 }
 
 class TestListScreenState extends State<TestListScreen>

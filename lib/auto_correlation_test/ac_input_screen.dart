@@ -10,9 +10,7 @@ import 'package:stat_tests/auto_correlation_test/ac_results_screen.dart';
 
 class ACInputScreen extends StatefulWidget {
   @override
-  ACInputScreenState createState() {
-    return new ACInputScreenState();
-  }
+  ACInputScreenState createState() => ACInputScreenState();
 }
 
 class ACInputScreenState extends State<ACInputScreen> {

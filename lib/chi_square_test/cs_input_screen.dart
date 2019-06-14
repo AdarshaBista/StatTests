@@ -10,9 +10,7 @@ import 'package:stat_tests/chi_square_test/cs_results_screen.dart';
 
 class CSInputScreen extends StatefulWidget {
   @override
-  CSInputScreenState createState() {
-    return new CSInputScreenState();
-  }
+  CSInputScreenState createState() => CSInputScreenState();
 }
 
 class CSInputScreenState extends State<CSInputScreen> {

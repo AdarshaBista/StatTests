@@ -10,9 +10,7 @@ import 'package:stat_tests/gap_test/gap_results_screen.dart';
 
 class GapInputScreen extends StatefulWidget {
   @override
-  GapInputScreenState createState() {
-    return new GapInputScreenState();
-  }
+  GapInputScreenState createState() => GapInputScreenState();
 }
 
 class GapInputScreenState extends State<GapInputScreen> {
@@ -100,7 +98,8 @@ class GapInputScreenState extends State<GapInputScreen> {
           context: context,
           controller: _gapLengthFieldController,
           hintText: "Enter gap length",
-          validator: (val) => InputValidators.validateNonZeroPositiveIntField(val),
+          validator: (val) =>
+              InputValidators.validateNonZeroPositiveIntField(val),
         ),
       );
 

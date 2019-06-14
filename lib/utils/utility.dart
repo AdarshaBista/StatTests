@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class Utility {
   static List<double> toDoubleList(String numbersStr,
       [double divFactor = 1.0]) {
@@ -29,26 +27,6 @@ class Utility {
   // Round off double to 4 digits
   static double setPrecisionTo4(double number) {
     return setPrecision(number, 4);
-  }
-
-  // Find largest number in a list
-  static double findLargest(List<double> list) {
-    return list.reduce(max);
-  }
-
-  // Find smallest number in a list
-  static double findSmallest(List<double> list) {
-    return list.reduce(min);
-  }
-
-  // Find largest number in a list of ints
-  static int findLargestInt(List<int> list) {
-    return list.reduce(max);
-  }
-
-  // Find smallest number in a list of ints
-  static int findSmallestInt(List<int> list) {
-    return list.reduce(min);
   }
 
   // Check if a string is numeric

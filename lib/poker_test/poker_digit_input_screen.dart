@@ -6,9 +6,7 @@ import 'package:stat_tests/poker_test/poker_3_digit_input_screen.dart';
 
 class PokerDigitInputScreen extends StatefulWidget {
   @override
-  PokerDigitInputScreenState createState() {
-    return new PokerDigitInputScreenState();
-  }
+  PokerDigitInputScreenState createState() => PokerDigitInputScreenState();
 }
 
 class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
@@ -33,7 +31,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
   }
 
   Widget _build3DigitButton() => Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: CustomButton(
           context: context,
           label: "3 digits",
@@ -42,7 +40,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
       );
 
   Widget _build4DigitButton() => Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: CustomButton(
           context: context,
           label: "4 digits",
@@ -61,7 +59,7 @@ class PokerDigitInputScreenState extends State<PokerDigitInputScreen> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
+          horizontal: 40.0,
           vertical: 20.0,
         ),
         children: <Widget>[

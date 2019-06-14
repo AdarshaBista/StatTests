@@ -53,7 +53,7 @@ class Poker4DigitCalculator extends PokerCalculator {
   static const int NUM_OF_COMBINATIONS = 5;
 
   Poker4DigitCalculator(List<int> inputs) {
-    _probabilities = [0.001, 0.504, 0.431, 0.027, 0.0376];
+    _probabilities = [0.001, 0.504, 0.432, 0.027, 0.036];
     _observedFreqs = inputs;
 
     super._calculateExpectedFreq(NUM_OF_COMBINATIONS, _probabilities);

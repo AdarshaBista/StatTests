@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:stat_tests/utils/utility.dart';
 
 class KSCalculator {
@@ -51,8 +52,8 @@ class KSCalculator {
   }
 
   void _calculateD() {
-    _dPlus = Utility.findLargest(_iOverNMinusRi);
-    _dMinus = Utility.findLargest(_riMinusIMinusOneOverN);
+    _dPlus = _iOverNMinusRi.reduce(max);
+    _dMinus = _riMinusIMinusOneOverN.reduce(max);
     _d = _dPlus > _dMinus ? _dPlus : _dMinus;
   }
 }
