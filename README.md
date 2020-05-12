@@ -16,6 +16,6 @@ Please refer to the official documentation for getting started with flutter. You
 
 - [Flutter](https://flutter.dev)
 
-## Screenshots
+## Demo
 
-<img height="480px" src="screenshots/1.png">
+<img height="480px" src="demo/demo.gif">
